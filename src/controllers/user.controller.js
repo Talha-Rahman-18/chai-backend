@@ -94,7 +94,7 @@ return res.status(201).json(
 
 })
 
-//login controller
+//login controller//
 const loginUser=asyncHandler( async (req,res)=>{
   
   
@@ -153,7 +153,7 @@ return res.status(200)
 
 })
 
-//logout
+//logout//
 const logoutUser=asyncHandler(async(req,res)=>{
    await User.findByIdAndUpdate(
     req.user._id,
@@ -178,7 +178,7 @@ return res
 .json(new ApiResponse(200,{},"User logged out"));
 })
 
-//refreshtoken endpoint
+//refreshtoken endpoint//
 const  refreshAccessToken= asyncHandler(async(req,res)=>{
 
   const incomingRefreshToken= req.cookies.refreshToken || req.body.refreshToken
@@ -229,7 +229,7 @@ try {
 
 })
 
-//change password
+//change password//
 const changeCurrentPassword= asyncHandler(async(res,req)=>{
 const {oldPassword,newPassword}= req.body
 
@@ -251,7 +251,7 @@ return res.status(200).json(
 })
 
 
-//current user
+//current user//
 const getCurrentUser=asyncHandler(async(req,res)=>{
   return res.status(200)
   .json(
@@ -260,7 +260,7 @@ const getCurrentUser=asyncHandler(async(req,res)=>{
 
 })
 
-//update account
+//update account//
 
 const updateAccountDetails=asyncHandler(async(req,res)=>{
 const {fullName,email}=req.body
@@ -353,7 +353,7 @@ if(!coverImage.url){
 
 })
 
-//aggregation pipeline for get channel profile
+//aggregation pipeline for get channel profile//
 
 const getUserChannelProfile=asyncHandler(async(req,res)=>{
 const {username}= req.params
@@ -422,19 +422,18 @@ const channel = await User.aggregate([
 if(!channel?.length){
   throw new ApiError(404,"Channel doesn't exist");
 }
+console.log(channel[0]);
 
 return res.status(200)
 .json(
   new ApiResponse(200,channel[0],"user channel fetched successfully")
 )
 
-
-
-
-
 })
 
-//watch history pipeline
+
+
+//watch history pipeline//
 const getWatchHistory = asyncHandler(async(req,res)=>{
 const user =await User.aggregate([
   {

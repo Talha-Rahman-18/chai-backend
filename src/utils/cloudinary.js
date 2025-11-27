@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 dotenv.config();
 
 import fs from "fs"
+import { ApiError } from './ApiError';
 
     cloudinary.config({ 
         cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
@@ -29,5 +30,25 @@ catch (error) {
 }
 }
 
+const deleteCloudinary=async(image)=>{
+   try {
+        if (!image) {
+            throw new ApiError(404, "Image Invalid")
+        }
+        //delete the file on cloudinary
+        const publicId = extractPublicId(image);
 
-export {uploadOnCloudinary}
+        const response = await cloudinary.uploader.destroy(publicId);
+        if(response.result != 'ok'){
+            throw new ApiError(404, "Old Image Deletion Failed from Cloudinary")
+        }
+
+        // file has been deleted successfully
+        return 1;
+
+    } catch (error) {
+        return null;
+    }
+}
+
+export {uploadOnCloudinary,deleteCloudinary}

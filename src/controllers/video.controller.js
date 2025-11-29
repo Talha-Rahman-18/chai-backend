@@ -18,7 +18,7 @@ if(!videoLocalpath){
     throw new ApiError(400,"Video is required");
 }
 
-const thumbnailLocalpath= req.files?.thumbnailFile[0]?.path;
+const thumbnailLocalpath= req.files?.thumbnail[0]?.path;
 if(!thumbnailLocalpath){
         throw new ApiError(400,"Thumbnail is required");
 }
@@ -99,7 +99,7 @@ const getAllVideos = asyncHandler(async(req,res)=>{
                 $cond:{
                     if:{$isArray:"$views"},
                     then:{$size:"$views"},
-                    else:{$ifNull:[$views,0]}
+                    else:{$ifNull:["$views",0]}
                 }
             }
 
@@ -111,6 +111,8 @@ const getAllVideos = asyncHandler(async(req,res)=>{
     page:pageNumber,
     limit:limitNumber
    }
+
+
 
    Video.aggregatePaginate(aggregate,options,(err,result)=>{
 
@@ -205,6 +207,7 @@ if(!isValidObjectId(userId)){
 const getVideoById= asyncHandler(async(req,res)=>{
 
 const {videoId} = req.params;
+console.log("videoId::",videoId)
 
 if(!videoId){
     throw new ApiError(400,"No video find ,id invalid");
@@ -215,11 +218,13 @@ if(!videoId){
 await Promise.all([
     Video.findByIdAndUpdate(
         videoId,
-        {$addToSet:{views:req.user._id}}
+        {$addToSet:{views:req.user._id}},
+        {new:true}
     ),
     User.findByIdAndUpdate(
         req.user._id,
-        {$push:{watchHistory:videoId}}
+        {$push:{watchHistory:videoId}},
+        {new:true}
     )
 ]);
 
@@ -325,12 +330,7 @@ const updateVideo= asyncHandler(async(req,res)=>{
 
     const thumbnail = await uploadOnCloudinary(thumbnailLocalpath);
 
-const oldVideo=await Video.findById(videoId);
-const deleteVideoonCloudinary = await deleteCloudinary(oldVideo);
 
-if(!deleteVideoonCloudinary){
-    throw new ApiError(404,"Something wrong in video deletion")
-}
 
 const video = await Video.findByIdAndUpdate(
     videoId,
@@ -364,6 +364,12 @@ const deleteVideo = asyncHandler(async(req,res)=>{
 
     const video = await Video.findByIdAndDelete(videoId);
 
+//    const oldVideo=await Video.findById(videoId);
+// const deleteVideoonCloudinary = await deleteCloudinary(oldVideo);
+
+// if(!deleteVideoonCloudinary){
+//     throw new ApiError(404,"Something wrong in video deletion")
+// }
 return res.
 status(200)
 .json(new ApiResponse(

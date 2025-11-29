@@ -1,5 +1,5 @@
 import { Router } from "express";
- import { getChannelStates,getChannelVideos } from "../controllers/dashboard.controller";
+ import { getChannelStates,getChannelVideos } from "../controllers/dashboard.controller.js";
  import {verifyJWT} from "../middlewares/auth.middleware.js"
 
  const router = Router();
@@ -7,6 +7,6 @@ import { Router } from "express";
  router.use(verifyJWT);
 
  router.route("/states").get(getChannelStates)
- router.route("/videos").get(getChannelVideos)
+ router.route("/users-videos").get(getChannelVideos)
 
  export default router;

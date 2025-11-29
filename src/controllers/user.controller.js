@@ -233,6 +233,9 @@ try {
 const changeCurrentPassword= asyncHandler(async(res,req)=>{
 const {oldPassword,newPassword}= req.body
 
+console.log(oldPassword,"-",newPassword)
+
+
 const user = await User.findById(req.user?._id)
 const  isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
 
@@ -253,6 +256,9 @@ return res.status(200).json(
 
 //current user//
 const getCurrentUser=asyncHandler(async(req,res)=>{
+
+
+
   return res.status(200)
   .json(
     new ApiResponse(200,req.body,"current user fetched successfully")
@@ -369,7 +375,8 @@ const channel = await User.aggregate([
       username:username?.toLowerCase(),
     }
   },
-  {//what we are doing here mainly in subs model we store type:Schema.Types.ObjectId,ref:"User" here mainly we stored users _id in channel and by look up we are matching them  if matched then it will publish as subscribers .
+  {
+    //what we are doing here mainly in subs model we store type:Schema.Types.ObjectId,ref:"User" here mainly we stored users _id in channel and by look up we are matching them  if matched then it will publish as subscribers .
             
     $lookup:{
       from:"subscriptions",
@@ -396,7 +403,7 @@ const channel = await User.aggregate([
       },
       isSubscribed:{
         $cond:{
-          if:{$in:[req.user?._id,"subscribers.subscriber"]},
+          if:{$in:[req.user?._id,"$subscribers.subscriber"]},
           then:true,
           else:false
         }
@@ -418,7 +425,7 @@ const channel = await User.aggregate([
   
 ])
 
-
+console.log("channel::",channel[0])
 if(!channel?.length){
   throw new ApiError(404,"Channel doesn't exist");
 }

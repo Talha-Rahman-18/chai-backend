@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 dotenv.config();
 
 import fs from "fs"
-import { ApiError } from './ApiError';
+import { ApiError } from './ApiError.js';
 
     cloudinary.config({ 
         cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
@@ -25,7 +25,8 @@ return response;
 } 
 //error
 catch (error) {
-    fs.unlinkSync(localFilePath);//remove the file from local temp file as the uploaded opetation failed
+    if(error)
+    {fs.unlinkSync(localFilePath);}//remove the file from local temp file as the uploaded opetation failed
 
 }
 }
@@ -40,7 +41,7 @@ const deleteCloudinary=async(image)=>{
 
         const response = await cloudinary.uploader.destroy(publicId);
         if(response.result != 'ok'){
-            throw new ApiError(404, "Old Image Deletion Failed from Cloudinary")
+            throw new ApiError(404, "Old File Deletion Failed from Cloudinary")
         }
 
         // file has been deleted successfully

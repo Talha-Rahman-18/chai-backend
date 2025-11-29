@@ -2,13 +2,12 @@ import mongoose from "mongoose";
 import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
 import {asyncHandler} from "../utils/asyncHandler.js"
-import {Video} from "../models/video.models.js"
-import {Like} from "../models/like.models.js"
-import {Subscription} from "../models/subscription.models.js"
+import {Video} from '../models/video.models.js'
+
 import {User} from "../models/user.models.js"
 
 const getChannelStates= asyncHandler(async(req,res)=>{
-    const {userId} = req.user._id;
+    const userId = req.user._id;
 
 
 
@@ -43,7 +42,7 @@ const getChannelStates= asyncHandler(async(req,res)=>{
                         }
                     }
                 ],
-                as:"likesDetais"
+                as:"likeDetails"
             }
         },
         {
@@ -73,12 +72,12 @@ const getChannelStates= asyncHandler(async(req,res)=>{
                 totalLikes: 1,
                 totalSubscribers: 1,
                 totalViews: 1,
-                "videosDetails._id": 1,
-                "videosDetails.isPublished": 1,
-                "videosDetails.thumbnail": 1,
-                "videosDetails.tittle": 1,
-                "videosDetails.description": 1,
-                "videosDetails.createdAt": 1
+                "videoDetails._id": 1,
+                "videoDetails.isPublished": 1,
+                "videoDetails.thumbnail": 1,
+                "videoDetails.tittle": 1,
+                "videoDetails.description": 1,
+                "videoDetails.createdAt": 1
 
             }
         }
@@ -100,7 +99,7 @@ const getChannelStates= asyncHandler(async(req,res)=>{
 
 const getChannelVideos= asyncHandler(async(req,res)=>{
 
-const {userId} = req.user._id;
+const userId = req.user._id;
 
 const video =await Video.aggregate([
     {$match:{

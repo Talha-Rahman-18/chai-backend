@@ -7,7 +7,7 @@ import { Router } from "express";
 
  const router = Router();
 
- router.route("/")
+ router.route("/videos")
  .get(getAllVideos)
  .post(
     upload.fields([
@@ -25,9 +25,10 @@ import { Router } from "express";
 
 router.use(verifyJWT);
 
- router.route("/:videoId").get(getVideoById)
 
- router.route("/user/videos").get(getUserVideos)
+router.route("/user/videos").get(getUserVideos)
+
+router.route("/:videoId").get(getVideoById)
 
  router.route("/:videoId").delete(deleteVideo).patch(upload.single("thumbnail"),updateVideo)
 

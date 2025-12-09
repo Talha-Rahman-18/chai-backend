@@ -6,7 +6,7 @@ import {Video} from '../models/video.models.js'
 
 import {User} from "../models/user.models.js"
 
-const getChannelStates= asyncHandler(async(req,res)=>{
+const getChannelStats= asyncHandler(async(req,res)=>{
     const userId = req.user._id;
 
 
@@ -131,4 +131,4 @@ return res.status(200)
 
 });
 
-export {getChannelStates,getChannelVideos}
+export {getChannelStats,getChannelVideos}

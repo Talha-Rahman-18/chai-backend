@@ -100,7 +100,6 @@ const loginUser=asyncHandler( async (req,res)=>{
   
   //get data
   const {email,username,password}=req.body
-  console.log("email::",email);
   
   //check if username or email
   if(!username && !email){
@@ -261,7 +260,7 @@ const getCurrentUser=asyncHandler(async(req,res)=>{
 
   return res.status(200)
   .json(
-    new ApiResponse(200,req.body,"current user fetched successfully")
+    new ApiResponse(200,req.user,"current user fetched successfully")
   )
 
 })
@@ -363,6 +362,7 @@ if(!coverImage.url){
 
 const getUserChannelProfile=asyncHandler(async(req,res)=>{
 const {username}= req.params
+console.log("usernsme",username)
 
 if(!username?.trim()){
 throw new ApiError(400,"username is missing");
@@ -425,11 +425,9 @@ const channel = await User.aggregate([
   
 ])
 
-console.log("channel::",channel[0])
 if(!channel?.length){
   throw new ApiError(404,"Channel doesn't exist");
 }
-console.log(channel[0]);
 
 return res.status(200)
 .json(
@@ -489,7 +487,7 @@ const user =await User.aggregate([
 //in user variable we are putting aggregation pipeline so it gives the array thats why we just take the [0] element bcz its an object then in aggregation we are matching the user id then it will find the user and work on just watchhistory part so we returning just the wh part from the whole user object .
 return res
 .status(200)
-.json(new ApiResponse(200,user[0].WatchHistory,"User history fetched successfully"))
+.json(new ApiResponse(200,user[0],"User history fetched successfully"))
 
 
 })

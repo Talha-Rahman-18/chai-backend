@@ -1,0 +1,28 @@
+#likedvideo{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+.heading{
+    height: 10%;
+    width: 100%;
+}
+.likedmain{
+    height: max-content;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+}
+
+.likedvideoss{
+   height:300px;
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+}

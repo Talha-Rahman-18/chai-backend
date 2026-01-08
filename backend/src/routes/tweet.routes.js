@@ -5,7 +5,7 @@ import {verifyJWT} from '../middlewares/auth.middleware.js'
 const router = Router();
 router.use(verifyJWT);
 
-router.route("/tweet").post(createTweet);
+router.route("/").post(createTweet);
 router.route("/user/:userId").get(getUserTweets);
 router.route("/:tweetId").patch(updateTweet).delete(deleteTweet);
 

@@ -1,0 +1,75 @@
+.contpostcard{
+    height:100%;
+    width: 100%;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.thumbnail{
+    height:70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    
+}
+.thumbnailink{
+    height: 100%;
+    width: 100%;
+    /* display: block; */
+    line-height: normal;
+
+}
+
+.thmb{
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.duration{
+    height: 15px;
+    width: 10%;
+    padding: 3px;
+    position: relative;
+    bottom: 35px;
+    right: -340px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    align-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infosvideo{
+    height: 25%;
+    width:98%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.chnnl{
+    height: 50%;
+    width: 15%;
+}
+.chnnlavtr{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.allinfo{
+    height: 80%;
+    width: 80%;
+    text-align:start;
+    display: flex;
+    flex-direction: column;
+    
+   
+}
+.allinfo h3,p{
+    margin: 0;
+    padding: 0;
+    
+}

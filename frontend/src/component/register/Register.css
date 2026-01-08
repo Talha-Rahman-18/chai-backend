@@ -1,0 +1,70 @@
+.regcont{
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.regmain{
+    height:95vh;
+    width: 30vw;
+    padding-bottom: 1vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    border: 2px solid black;
+
+}
+.reglogo{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+.reginfo{
+    height:80% ;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vh;
+}
+
+
+.regform input{
+    height: 100%;
+    width: 100%;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    border: 2px solid black;
+}
+.regform input[type="file"]::file-selector-button {
+  height: 100%;
+  width:max-content;
+}
+.regform{
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+}
+
+.regform label{
+    align-self: flex-start;
+    margin-bottom: -2%;
+}
+
+
+
+
+
+
+
+
+

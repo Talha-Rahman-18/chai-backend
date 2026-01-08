@@ -1,0 +1,55 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 2px solid black;
+  width: 100%;
+  background-color: white;
+  height: 10vh;
+  color: white;
+  z-index: 1000;
+  display: flex;
+
+  
+}
+.headercont{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logohead{
+    height: 100%;
+    width: 20%;
+    border-radius: 12px;
+
+}
+#logoapp{
+  height: 100%;
+  width: max-content;
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+}
+.elementheader{
+  height: 100%;
+  width: 20%;
+  margin-right: 8vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.channellink{
+  height: 100%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.channellink img{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}

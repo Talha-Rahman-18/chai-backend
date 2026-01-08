@@ -1,0 +1,40 @@
+.saveplaylistcont{
+    height: 100%;
+    width: 100%;
+    
+}
+#savecont{
+    height: max-content;
+    width: 100%;
+    padding: 2vw;
+    border-radius: 12px;
+    text-align: center;
+    background-color: rgb(211, 181, 143);
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.check{
+    height: max-content;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    gap: 1vw;
+}
+#inpply
+{   padding-left: 1vh;
+    font-size: 1rem;
+    text-transform: capitalize;
+    border: none;
+    outline: none;
+}
+#inpply:focus{
+    border: none;
+    outline: none;
+}
+input[type="checkbox"] {
+  transform: scale(1.5);
+ accent-color:red;
+}

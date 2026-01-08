@@ -1,0 +1,157 @@
+.videocard{
+    height:100%;
+    width:100%;
+    position: relative;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.advideobtn{
+    width: 100%;
+    display: inline;
+}
+.allvideo{
+    height: max-content;
+    width:90%;
+    padding: 1%;
+    position: relative;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+   }
+.videos{
+    height: max-content;
+    width: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.video{
+    height:300px;
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+}
+
+/* //form// */
+.videofullcont{
+    height: 90vh;
+    width: 100%;
+    position: absolute;
+    top: 10vh;
+    /* left: 10vw; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    background-color:rgba(0, 0, 0, 0.94);
+}
+.formvideo{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+}
+.sbmtbtns{
+    height: 10%;
+    width: 100%;
+   display: flex;
+   justify-content: center;
+}
+.cancle{
+    height: max-content;
+    width: max-content;
+    align-self: flex-end;
+}
+.addvideo{
+    height:95%;
+    width: 500px;
+    padding: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2%;
+    overflow: hidden;
+}
+.videofile{
+    height: 50%;
+    width: 95%;
+    text-align: center;
+    color: white;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px dashed rgb(255, 255, 255);
+}
+#videoFile{
+    opacity: 0;        
+  width: 0.1px;      
+  height: 0.1px;    
+  position: absolute; 
+  z-index: -1;  
+    
+}
+#labelvideo{
+    display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #08e6f5;
+  color: black;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.inputvideo{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    overflow: auto;
+    
+}
+
+#thumbnail{
+    height: 15%;
+    width:93%;
+    padding: 1%;
+    font-size: 1.5rem;
+    border: 2px solid rgb(255, 255, 255);
+    color: white;
+}
+#titlevideo{
+    height: 30%;
+    width: 95%;
+    background-color: transparent;
+    font-size: 1.3rem;
+    color: white;
+    border: 2px solid rgb(255, 255, 255);  
+}
+#titlevideo:focus{
+    outline: 1px solid white;
+}
+#descriptionvideo{
+    height: 80%;
+    width: 95%;
+    font-size: 1.3rem;
+    color: white;
+    background-color: transparent;
+    border: 2px solid rgb(255, 255, 255);
+}
+#descriptionvideo:focus{
+    outline: .5px solid white;
+}
+#descriptionvideo::placeholder{
+    font-size: 1.2rem;
+
+}

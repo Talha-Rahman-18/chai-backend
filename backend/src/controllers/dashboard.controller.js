@@ -63,14 +63,14 @@ const getChannelStats= asyncHandler(async(req,res)=>{
                 }
              },
              totalLikes:{$size:"$likeDetails"},
-             totalSubscriber:{$size:"$subscriberDetails"}
+             totalSubscriber:{$size:"$subscriberDetails" || 0}
             }
         },
         {
             $project:{
                username: 1,
                 totalLikes: 1,
-                totalSubscribers: 1,
+                totalSubscriber: 1,
                 totalViews: 1,
                 "videoDetails._id": 1,
                 "videoDetails.isPublished": 1,
@@ -90,7 +90,7 @@ const getChannelStats= asyncHandler(async(req,res)=>{
     return res 
     .status(200)
     .json(
-        new ApiResponse(200,user,"User Fetched Successfully")
+        new ApiResponse(200,user[0],"User Fetched Successfully")
     )
 
 

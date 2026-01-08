@@ -1,0 +1,45 @@
+.subcont{
+    height: max-content;
+    width: 100%;
+    padding-left: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1vh;
+}
+
+.subscribecont{
+    height:8vh;
+    width: 95%;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+}
+.subimg{
+    height: 60%;
+    width: max-content;
+    display: flex;
+   
+}
+.sub{
+    height:60px;
+    width: 60px;
+    align-self: center;
+    border-radius: 50%;
+}
+
+.subcontent{
+    height:100%;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.subcontent p,h4{
+    margin: 0;
+    padding: 0;
+}

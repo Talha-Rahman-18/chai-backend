@@ -1,4 +1,4 @@
-import { toggleCommentLike,toggleTweetLike,toggleVideoLike,getLikedVideos } from "../controllers/like.controller";
+import { toggleCommentLike,toggleTweetLike,toggleVideoLike,getLikedVideos } from "../controllers/like.controller.js";
 
 import { Router } from "express";
 import {verifyJWT} from '../middlewares/auth.middleware.js'
@@ -9,7 +9,7 @@ router.use(verifyJWT);
 router.route("/toggle/v/:videoId").post(toggleVideoLike);
 router.route("/toggle/c/:commentId").post(toggleCommentLike);
 router.route("/toggle/t/:tweetId").post(toggleTweetLike);
-router.route("/liked-videos").get(getLikedVideos);
+router.route("/videos").get(getLikedVideos);
 
 
 

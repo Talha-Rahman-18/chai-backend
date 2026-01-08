@@ -2,7 +2,7 @@ import mongoose,{isValidObjectId} from "mongoose";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Playlist } from "../models/playlist.models.js";
-import { asyncHandler } from "../utils/asyncHandler";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 const createPlaylist = asyncHandler(async(req,res)=>{
 const {name,description} = req.body;
@@ -13,7 +13,7 @@ if(!name){
 
 const playlist = await Playlist.create({
     name,
-    description:description || "",
+    description:description || " ",
     owner:req.user._id,
 
 })
@@ -31,6 +31,7 @@ return res.status(200)
 
 const getUserPlaylist = asyncHandler(async(req,res)=>{
 const {userId} = req.params;
+
 
 if(!isValidObjectId(userId)){
     throw new ApiError(400,"User Id not found");
@@ -54,6 +55,7 @@ return res.status(200)
 
 const getPlaylistById = asyncHandler(async(req,res)=>{
     const {playlistId} = req.params;
+    console.log("back id",playlistId);
 
     if(!playlistId){
         throw new ApiError(404,"Playlist Id not found")
@@ -147,10 +149,15 @@ return res
 
 const addVideoToPlaylist = asyncHandler(async(req,res)=>{
 
-    const {playlistId,videoId} = req.params;
+    const {videoId,playlistId} = req.params;
 
-    if(!isValidObjectId(playlistId) || !isValidObjectId(videoId)){
-        throw new ApiError(400,"Invalid playlist Id or video id")
+    if(!isValidObjectId(videoId)){
+        throw new ApiError(400,"Invalidvideo id")
+    }
+
+
+if(!isValidObjectId(playlistId)){
+        throw new ApiError(400,"Invalid playlist Id")
     }
 
 const playlist = await Playlist.findByIdAndUpdate(
@@ -172,16 +179,6 @@ return res
 .json(new ApiResponse(
     200,playlist,"Video Added to The Playlist"
 ))
-
-
-
-
-
-
-
-
-
-
 
 });
 

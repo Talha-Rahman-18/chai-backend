@@ -7,7 +7,7 @@ import { Router } from "express";
 
  const router = Router();
 
- router.route("/videos")
+ router.route("/")
  .get(getAllVideos)
  .post(
     upload.fields([

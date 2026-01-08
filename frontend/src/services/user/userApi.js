@@ -75,9 +75,10 @@ updateUserCoverImage:builder.mutation({
 }),
 
 getUserChannelProfile:builder.query({
-    query:(username)=>{
-        `/users/c/${username}`
-    }
+    query:(username)=>({
+        url:`/users/c/${username}`,
+       
+    })
 }),
 
 getWatchHistory:builder.query({

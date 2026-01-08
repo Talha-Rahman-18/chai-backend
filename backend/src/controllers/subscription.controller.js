@@ -14,16 +14,18 @@ if(!isValidObjectId(channelId)){
     throw new ApiError(404,"Invalid channel Id");
 }
 
-const isSubscribed = await Subscription.findOne({channel:channelId,subscriber:req.user._id});
+const isSubscribed = await Subscription.findOne({channel:channelId,
+subscriber:req.user._id});
 
-if(req.user._id === channelId){
+if(req.user._id.toString() === channelId){
     throw new ApiError(400,"You can't subscribe your own cahnnel")
 }
 
 if(!isSubscribed){
+    
     const channel = await Subscription.create({
         subscriber:req.user._id,
-        Channel:channelId,
+        channel:channelId,
     })
 
     return res
@@ -31,7 +33,10 @@ if(!isSubscribed){
     .json(new ApiResponse(200,channel,"Sbscribed Channel"))
 }else{
 
-const channel = await Subscription.deleteOne();//though there must be a single document for  single user then it will delete it.
+const channel = await Subscription.deleteOne(
+    {channel: channelId,
+  subscriber: req.user._id}
+);//though there must be a single document for  single user then it will delete it.
 
   return res
     .status(200)
@@ -39,16 +44,6 @@ const channel = await Subscription.deleteOne();//though there must be a single d
 
 
 }
-
-
-
-
-
-
-
-
-
-
 
 })
 
@@ -77,7 +72,7 @@ const getUserChannelSubscribers = asyncHandler(async(req,res)=>{
         {
             $project:{
                 _id:0,
-                username:"allSubscribers.username",
+                username:"$allSubscribers.username",
                 avatar:"$allSubscribers.avatar"
             }
         }
@@ -91,15 +86,18 @@ if(!subscribers){
 return res
     .status(200)
     .json(
-        ApiResponse(200, subscribers, "Channel Subscribers fetched successfully")
+       new ApiResponse(200, subscribers, "Channel Subscribers fetched successfully")
     )
 
 })
 
 const getSubscribedToDetails = asyncHandler(async(req,res)=>{
-    const {subscriberId} = req.params;
+    const subscriberId = decodeURIComponent(
+    req.params.subscriberId
+  ).trim();
+    
 
-    if(!subscriberId){
+    if(!isValidObjectId(subscriberId?.trim())){
         throw new ApiError(404,"Invalid id")
     }
 

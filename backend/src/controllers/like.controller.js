@@ -8,7 +8,6 @@ import {Video} from '../models/video.models.js'
 
 const toggleVideoLike = asyncHandler(async(req,res)=>{
     const {videoId} = req.params;
-    const {userId} = req.user._id;
 
 
     if(!isValidObjectId(videoId)){
@@ -16,25 +15,25 @@ const toggleVideoLike = asyncHandler(async(req,res)=>{
     }
 
     const isLiked = await Like.findOne({
-        Video:videoId,
-        likedBy:userId
-    })
+        video:videoId,
+        likedBy:req.user._id
+    });
 
     if(!isLiked){
         const like = await Like.create({
             //check if the user like the video or not
             video:videoId,
-            likedBy:userId
+            likedBy:req.user._id,
         });
 
         return res
         .status(200)
         .json(new ApiResponse(200,like,"Liked the video"))
     }else{
-        const like=await Like.deleteOne(isLiked._id);
+        const unlike=await isLiked.deleteOne();
         return res
         .status(200)
-        .json(new ApiResponse(200,like,"Unliked the video"))
+        .json(new ApiResponse(200,unlike,"Unliked the video"))
     
     }
 
@@ -116,7 +115,7 @@ const getLikedVideos = asyncHandler(async(req,res)=>{
 
     const likedVideos = await Like.aggregate([
         {$match:{
-            likedBy:new mongoose.Types.ObjectId(userId),
+            likedBy:new mongoose.Types.ObjectId(req.user._id),
             video:{
                 $exists:true,
             }

@@ -18,9 +18,9 @@ const getVideoComments = asyncHandler (async(req,res)=>{
         throw new ApiError(400,"Vidoe id Invalid")
     }
 
-    const videoComments= await Comment.aggregate([
+    const aggregate=  Comment.aggregate([
         {$match:{
-            video:new mongoose.Types.ObjectId(videoId)
+            video: new mongoose.Types.ObjectId(videoId)
         }},
         {
             $lookup:{
@@ -43,28 +43,25 @@ const getVideoComments = asyncHandler (async(req,res)=>{
         }
     ]);
 
-    if(!videoComments){
+    if(!aggregate){
         throw new ApiError(400, "Failed comment fetching.")       
     }
 
 
 
-Comment.aggregatePaginate(videoComments,option,function(err,res){
-    if(err){
-        throw new ApiError(400,"Invalid comment fetching in aggregation")
-    }else{
-        return res.status(200)
-        .json(new ApiResponse(200,res,"Got all video comments successfully"))
-    }
-})
+ const result = await Comment.aggregatePaginate(aggregate, option);
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, result, "Got all video comments successfully"));
+
 
 })
 
 const addComment = asyncHandler(async(req,res)=>{
 
-const {videoId} = req.params.videoId;
+const {videoId} = req.params;
 const {content} = req.body;
-const {userId} =req.user._id
 
 if(!content){
     throw new ApiError(400,"Content unabailable")
@@ -78,7 +75,7 @@ const comment = await Comment.create(
     {
         content,
         video:videoId,
-        owner:userId
+        owner:req.user._id,
     }
 )
 

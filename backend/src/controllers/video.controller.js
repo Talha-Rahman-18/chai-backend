@@ -9,8 +9,8 @@ import {Video} from "../models/video.models.js"
 const publishVideo= asyncHandler(async(req,res)=>{
 const {tittle,description}=req.body;
 
-if(!(tittle || description)){
-    throw new ApiError(404,"Tittle and description is required");
+if(!tittle){
+    throw new ApiError(404,"Tittle is required");
 }
 
 const videoLocalpath= req.files?.videoFile[0]?.path;
@@ -74,12 +74,12 @@ const getAllVideos = asyncHandler(async(req,res)=>{
             from:"users",
             localField:"owner",
             foreignField:"_id",
-            as:"channel" //which channels video thats user id
+            as:"owner" //which channels video thats user id
         }
     },
     {
         $set:{
-            channel:{$first:"$channel"}
+            owner:{$first:"$owner"}
         }
         //$unwind:"$channel" also can be used it just specify all the element of an array to object 
     },
@@ -92,9 +92,9 @@ const getAllVideos = asyncHandler(async(req,res)=>{
             isPublished:1,
             createdAt:1,
             updatedAt:1,
-            "channel._id":1,
-            "channel.username":1,
-            "channel.avatar":1,
+            "owner._id":1,
+            "owner.username":1,
+            "owner.avatar":1,
             views:{
                 $cond:{
                     if:{$isArray:"$views"},
@@ -114,16 +114,20 @@ const getAllVideos = asyncHandler(async(req,res)=>{
 
 
 
-   Video.aggregatePaginate(aggregate,options,(err,result)=>{
-
-        if(err){
-            throw new ApiError(400,err.message || "Failed to fetch videos");
-        }else{
-            return res.status(200)
+  const result=await Video.aggregatePaginate(aggregate,options);
+  return res.status(200)
             .json(new ApiResponse(200,result,"All videos fetched successfully"));
-        }
 
-   })
+   
+//    =>{
+//         if(err){
+//             throw new ApiError(400,err.message || "Failed to fetch videos");
+//         }else{
+//             return res.status(200)
+//             .json(new ApiResponse(200,result,"All videos fetched successfully"));
+//         }
+
+//    })
 
    
 
@@ -141,10 +145,10 @@ if(!isValidObjectId(userId)){
      throw new ApiError(400,"User Id is invalid")
 }
 
-    page = parseInt(page);
-    limit = parseInt(limit);
+     const pagenum = parseInt(page);
+     const limitnum = parseInt(limit);
 
-    const userVideos= await Video.aggregate([
+    const userVideos=  Video.aggregate([
         {
             $match:{
                 owner:new mongoose.Types.ObjectId(userId),
@@ -170,10 +174,10 @@ if(!isValidObjectId(userId)){
                 [sortBy]:sortType === "asc" ? 1 : -1,
             }
         },{
-            $skip:(page - 1) *limit
+            $skip:(pagenum - 1) *limitnum
         },
         {
-            $limit:limit,
+            $limit:limitnum,
         },{
             $addFields:{
                 views:{
@@ -195,7 +199,7 @@ if(!isValidObjectId(userId)){
         }
     ]);
 
-    const result = await Video.aggregatePaginate(userVideos,{page,limit});
+const result = await Video.aggregatePaginate(userVideos,{page:pagenum,limit:limitnum});
 
     return res 
     .status(200)
@@ -207,7 +211,6 @@ if(!isValidObjectId(userId)){
 const getVideoById= asyncHandler(async(req,res)=>{
 
 const {videoId} = req.params;
-console.log("videoId::",videoId)
 
 if(!videoId){
     throw new ApiError(400,"No video find ,id invalid");
@@ -318,30 +321,29 @@ const updateVideo= asyncHandler(async(req,res)=>{
 
     const {tittle,description} = req.body;
 
-    if(!(tittle || description)){
-          throw new ApiError(400,"Tittle or description needed")      
+    if(!(tittle || description || req.file)){
+          throw new ApiError(400,"Nothing To Update")      
     }
 
-    const thumbnailLocalpath = req.file?.path;
-
-    if(!thumbnailLocalpath){
-        throw new ApiError(400,"Thumbnail required to change")
-    }
-
-    const thumbnail = await uploadOnCloudinary(thumbnailLocalpath);
 
 
 
-const video = await Video.findByIdAndUpdate(
-    videoId,
-    {
-        $set:{
-            tittle,description,thumbnail : thumbnail.url, 
-        }
-    },{new:true}
-);
 
+const video = await Video.findById(videoId);
+if(!video){
+    throw new ApiError(404,"Video Not Found")
+}
 
+if(tittle) video.tittle= tittle;
+if(description) video.description = description;
+
+if(req.file?.path){
+    const uploadedThumbnail = await uploadOnCloudinary(req.file.path)
+
+    video.thumbnail = uploadedThumbnail.url;
+}
+
+await video.save();
 
 return res.
 status(200)

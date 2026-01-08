@@ -15,7 +15,8 @@ export const subscriptionApi = createApi({
             })
         }),
         getSubscribedChannels: builder.query({
-            query: (subscriberId) => `/subscriptions/u/${subscriberId}`
+            query: (subscriberId) =>`/subscriptions/u/${subscriberId}`
+                
         })
     })
 })

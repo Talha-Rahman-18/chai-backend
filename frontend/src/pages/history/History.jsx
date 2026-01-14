@@ -11,7 +11,7 @@ import { formateViews } from '../../utils/formateViews';
 
 function History() {
 
-const {data,isError,isLoading,refetch} = useGetWatchHistoryQuery()
+const {data,error,isLoading,refetch} = useGetWatchHistoryQuery()
 const videos = data?.data?.
 watchHistory || [];
 
@@ -37,14 +37,14 @@ watchHistory || [];
 )}
 
 
-{isError && (
-    <div style={{height:"100%",width:"100%",textAlign:"center"}} className="error">
-        <h1>Error Fetching WatchHistory</h1>
+{error && (
+    <div style={{height:"100vh",width:"100vw",textAlign:"center"}} className="error">
+        <h1>Error Fetching WatchHistory, Please Login</h1>
     </div>
 )}
           
 
-{!isError && !isLoading && videos.length > 0? (
+{!error && !isLoading && videos.length > 0? (
 
     videos.map((video,idx)=>(
  <div key={video?._id || idx} className="historyvideo">

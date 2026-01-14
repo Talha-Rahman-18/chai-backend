@@ -12,6 +12,7 @@ import Button from '../../component/button/Button';
 function Dashboard() {
 
     const [isopen,setisopen] = useState(false);
+    const [editvideo,seteditvideo] = useState(null);
 
     const [form,setform] = useState({
         thumbnail:null,
@@ -19,12 +20,26 @@ function Dashboard() {
         description:""
     })
 
+    const handleChange = (e)=>{
+       const { name, value ,files} = e.target;
+       if(files){
+         setform((prev) => ({
+                ...prev,
+                [name]: files[0],
+            }));
+       }else{
+
+           setform((prev) => ({
+               ...prev,
+               [name]: value
+           }));
+       }
+    }
 
 const {data,refetch,isLoading} = useGetChannelStatsQuery();
 
 const user = data?.data || [];
 const videos = user?.videoDetails || [];
-console.log(videos)
 
 
 
@@ -41,11 +56,13 @@ setform({
     description:video.description
 });
 setisopen(true);
+seteditvideo(video?._id);
 }
 
-const handleEdit = async()=>{
+const handleEdit = async(e,id)=>{
+e.preventDefault();
 
-const formdata = new FormData(id);
+const formdata = new FormData();
 formdata.append("tittle",form.tittle);
 formdata.append("description",form.description);
 
@@ -55,13 +72,23 @@ if(form.thumbnail){
 
   try {
     await updateVideo({
+        formData:formdata,
         videoId:id,
-        formData:formdata
     }).unwrap();
+
+seteditvideo(null);
 
     refetch();
 
-    alert("video update succesfully");
+    setform({
+    title: "",
+    description: "",
+    videoFile: null,
+    thumbnail: null,
+});
+
+
+    alert("video updated succesfully");
   } catch (error) {
 
     alert("video updation failed",error);
@@ -107,9 +134,48 @@ try {
         <div className="dashboard">
 
 
-{isopen && (
-<div className="editvideo">
-    
+{isopen && editvideo && (
+<div className="editvideo" onClick={()=>setisopen(false)}>
+    <div className="videoeditform" onClick={(e)=>e.stopPropagation()}>
+        <form className='formcont' onSubmit={(e)=>{handleEdit(e,editvideo)}}>
+
+{/* formcontent */}
+
+<div className="headbtns">
+    <h2 style={{margin:"0",padding:"0",color:"white"}}>Edit Video</h2>
+    <Button text={"×"} onClick={()=>setisopen(false)} />
+</div>
+
+<div className="videoinputs">
+<label htmlFor="thumbnail">Thumbnail</label>
+<input
+type='file'
+name='thumbnail'
+onChange={handleChange}
+/>
+
+<label htmlFor="tittle">Tittle*</label>
+<input
+type='text'
+name='tittle'
+value={form.tittle}
+onChange={handleChange}
+/>
+
+<label htmlFor="description">Description*</label>
+<textarea
+ type="text"
+name='description'
+value={form.description}
+onChange={handleChange}
+/>
+
+<Button type='submit' text={"save"} />
+
+</div>
+
+        </form>
+    </div>
 </div>
 )}
 
@@ -151,7 +217,8 @@ totalSubscriber}</h2>
 
 {user?.videoDetails?.length > 0 && (
     user.videoDetails.map((video,idx)=>(
-<div className="videostatus">
+
+<div key={video?._id || idx} className="videostatus">
     <input type="checkbox"
     checked={!!video?.isPublished}
     onChange={()=>togglePublish(video)}
@@ -168,8 +235,10 @@ totalSubscriber}</h2>
 <p>{formateTimeAgo(video?.createdAt)}</p>
 
 <div className="operations">
-    <Button text={"de"} backgroundColor={"red"} color={"white"} onClick={()=>handledelete(video?._id)} />
-    <Button text={"ed"} backgroundColor={"green"} color={"white"} onClick={()=>handeditform(video)} />
+    <Button text={<i class="fa-solid fa-trash"></i>} backgroundColor={"red"} color={"white"} onClick={()=>handledelete(video?._id)} />
+
+    <Button text={<i class="fa-solid fa-pen-to-square"></i>} backgroundColor={"green"} color={"white"} onClick={()=>handeditform(video)} />
+
 </div>
 
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Input from './component/input/Input'
@@ -18,11 +18,14 @@ import Player from './pages/player/Player'
 import Header from './component/header/Header'
 import AddPlaylist from './component/playlist/AddPlaylist'
 import Sidebar from './component/sidebar/Sidebar'
-
+import { useGetCurrentUserQuery, useRefreshAccessTokenMutation } from './services/user/userApi'
 
 function App() {
 
-  return (
+  const {data} = useGetCurrentUserQuery();
+const user = data?.data || [];
+
+return (
    
 <div className="appcont">
 

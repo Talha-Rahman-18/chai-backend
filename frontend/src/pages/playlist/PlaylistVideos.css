@@ -1,0 +1,121 @@
+.playlistpage{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+
+.playlistleft{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+.coverphoto{
+    width: 90%;
+    height: 40%;
+    border: 1px solid black;
+}
+.coverphoto img{
+    height: 100%;
+    width: 100%;
+}
+.metadataplaylist{
+    height: 20%;
+    width: 96%;
+    padding: 2%;
+    position: relative;
+    top: -30%;
+    background-color: rgba(172, 172, 172, 0.708);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.ownersdata{
+    height:20vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1vw;
+}
+
+#playchnnlimg{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+#playchnnlimg img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+#chnnldata{
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+
+
+/* right  */
+.playlistright{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+
+#playlistvideo{
+    height: max-content;
+    width: 95%;
+    border: 2px solid black;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+.videoofply{
+    height: 300px;
+    width: 400px;
+    border: 1px solid black;
+    border-radius: 12px;
+
+}
+.buttondelete{
+    height: 20%;
+    width: 20%;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+/* @media (max-width:780px) {
+.playlistpage{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.playlistleft,.playlistright{
+    height: max-content;
+    width: 100%;
+}
+    
+}  */

@@ -1,8 +1,10 @@
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+
 .sidebarmain{
     height: 90vh;
     width: 70px;
     position: fixed;
-    /* top: 0; */
     left: 0;
     border: 2px solid black;
     display: flex;
@@ -51,7 +53,8 @@
 
 .slides{
     height: 100%;
-    width: 100%;
+    width: 98%;
+    padding-left: 2%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,4 +86,55 @@ width: 100%;
     justify-content: center;
     gap: 1vw;
     
+}
+
+@media (max-width:900px) {
+   
+    .sidebarmain{
+       height: 10vh;
+       width: 100vw;
+       border: none;
+       border-top: 2px solid #000;
+       position: fixed;
+       top: 90vh;
+       display: flex;
+       flex-direction: row;
+       align-items: center;
+       justify-content: space-evenly;
+       transition: none;
+    }
+    
+.slide2{
+    display: none;
+}
+
+.slide1{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.slidelink{
+    height: 100%;
+    width:100%;
+    border: none;
+
+}
+.sidebarmain:hover{
+   width: 100%;
+}
+
+.sidebarmain:hover .links{
+    display: none;
+
+}
+.slides{
+    font-size: 1.5rem;
+    border: none;
+}
+.two,.four{
+display: none;
+}
+
+
 }

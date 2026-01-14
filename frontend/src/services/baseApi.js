@@ -3,6 +3,7 @@ import conf from '../conf/conf.js'
 
 export const baseApi = fetchBaseQuery({
     baseUrl:conf.backendUrl,
+    credentials:"include",
     prepareHeaders:(headers,{endpoint})=>{
 
         const token = localStorage.getItem('token');
@@ -17,3 +18,4 @@ export const baseApi = fetchBaseQuery({
 
     }
 })
+

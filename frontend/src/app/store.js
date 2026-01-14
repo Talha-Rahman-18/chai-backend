@@ -8,7 +8,7 @@ import {dashboardApi} from '../services/dashboard/dashboardApi.js'
 import {userApi} from '../services/user/userApi.js'
 import {subscriptionApi} from '../services/subscription/subscriptionApi.js'
 import {tweetApi} from '../services/tweet/tweetApi.js'
-
+import { api } from "../services/api.js";
 
 const store = configureStore({
     reducer: {
@@ -20,6 +20,7 @@ const store = configureStore({
         [dashboardApi.reducerPath]: dashboardApi.reducer,
         [subscriptionApi.reducerPath]: subscriptionApi.reducer,
         [tweetApi.reducerPath]: tweetApi.reducer,
+        [api.reducerPath]:api.reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(
@@ -30,7 +31,8 @@ const store = configureStore({
             likeApi.middleware,
             dashboardApi.middleware,
             subscriptionApi.middleware,
-            tweetApi.middleware
+            tweetApi.middleware,
+            api.middleware
         ),
 });
 

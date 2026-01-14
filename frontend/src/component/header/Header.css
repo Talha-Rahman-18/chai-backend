@@ -1,3 +1,5 @@
+
+
 .header {
   position: fixed;
   top: 0;
@@ -52,4 +54,32 @@
   height: 60px;
   width: 60px;
   border-radius: 50%;
+}
+
+@media (max-width:900px) {
+  .header{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+  }
+  .logohead{
+    height: 95%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: pink;
+  }
+  
+  #logoapp{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .elementheader button{
+    display: none;
+  }
 }

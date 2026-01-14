@@ -17,7 +17,7 @@ function Login (){
 
 try {
     const res= await loginUser(data).unwrap();
-    if(res?.data?.accessToken){
+    if(res?.data?.accessToken && res?.data?.refreshToken){
         localStorage.setItem('token',res.data.accessToken);
     }
 navigate("/");    

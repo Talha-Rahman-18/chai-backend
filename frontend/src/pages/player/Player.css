@@ -16,7 +16,7 @@ body{
 
 .plyleft{
     height:max-content;
-    width: 70%;
+    width: 65%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,6 +70,19 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+.likeee{
+    width: 100px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid black;
+}
+#likebutton:focus{
+    border: none;
+    outline: none;
 }
 #chnnlsub{
     height: 20%;

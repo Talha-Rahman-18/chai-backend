@@ -22,3 +22,13 @@ display: none;
 
 }
 
+@media (max-width:900px) {
+  .outlet {
+  margin-top: 10vh;   
+  min-height: calc(100vh - 10vh);
+  padding-top: 1vh;  
+  margin-left: 0px; 
+  margin-bottom: 12vh;
+
+}
+}

@@ -24,7 +24,10 @@ const VideoCard=memo(({data,userSpecificVideos=true,addVideoBtn=false})=>{
 
     const [isOpen,setisOpen] = useState(false);
 
-    const {data:allvideos,error:allerror,isLoading:allloading} = useGetAllVideosQuery();
+    const {data:allvideos,error:allerror,isLoading:allloading} = useGetAllVideosQuery({
+      page:1,
+      query:""
+    });
 
     const {data:userVideos,error:userError,isLoading:userLoading} = useGetAllUserVideosQuery({userId:data},{skip:!data});
 
@@ -139,12 +142,16 @@ isPublished && (
 
 {isOpen && (
     <form className="formvideo"  onSubmit={handleSubmit}>
+
     <div ref={boxref} className="videofullcont" onClick={(e)=>setisOpen(false)}>
-<div className="addvideo" onClick={(e)=>e.stopPropagation()}>
+
+   <div className="addvideo" onClick={(e)=>e.stopPropagation()}>
+
    <div className="cancle">
     <Button backgroundColor={"red"} color={"white"} text={'×'} width={"50px"} 
     onClick={()=>setisOpen(false)}
     />
+
    </div>
     
 

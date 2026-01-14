@@ -14,7 +14,7 @@ function Postcard({
     channel:{channelId,username,avatar}={}
 }){
 
- const {data} = useGetCurrentUserQuery();
+ const {data,error,isLoading} = useGetCurrentUserQuery();
  const name = data?.data?.username;
 
    

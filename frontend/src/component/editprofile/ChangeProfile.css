@@ -1,0 +1,55 @@
+.changemain{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.text{
+    height: 100%;
+    width: 35%;
+}
+.changeform{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+}
+#infoform{
+    height: 90%;
+    width: 96%;
+    padding: 1%;
+    border-radius: 8px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+#infoform input{
+    height: 10%;
+    width: 90%;
+    padding: 1%;
+    font-size: 1.2rem;
+    color: black;
+    border-radius: 14px;
+    background-color: transparent;
+}
+#infoform input::placeholder{
+    color: black;
+}
+#infoform label{
+    font-size: 1.1rem;
+    align-self: flex-start;
+}
+
+
+.buttonsave{
+    height: 25%;
+    width: 100%;
+    padding-right: 2%;
+    border-top: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

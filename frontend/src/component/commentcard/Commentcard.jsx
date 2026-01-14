@@ -100,7 +100,7 @@ return(
             </div>
         <Button backgroundColor={"red"}
         color={"white"}
-        text={"delete"}
+        text={<i class="fa-solid fa-trash"></i>}
         onClick={(e)=>{
             e.preventDefault();
             handleDeleteComment(comment._id)

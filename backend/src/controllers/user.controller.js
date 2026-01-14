@@ -136,10 +136,15 @@ const loggedInUser= await User.findById(user._id).select("-password -refreshToke
 const options={
   httpOnly:true,
   secure:true,
+    maxAge: 7 * 24 * 60 * 60 * 1000
 }
 
 return res.status(200)
-.cookie("accessToken",accessToken,options)
+.cookie("accessToken",accessToken,{
+  httpOnly:true,
+  secure:true,
+    maxAge:3 * 60 * 60 * 1000
+})
 .cookie("refreshToken",refreshToken,options)
 .json(
   new ApiResponse(200,{
@@ -181,7 +186,7 @@ return res
 const  refreshAccessToken= asyncHandler(async(req,res)=>{
 
   const incomingRefreshToken= req.cookies.refreshToken || req.body.refreshToken
-  
+  console.log("ref",incomingRefreshToken)
   if(!incomingRefreshToken){
     throw new ApiError(401,"unauthorized request");
   }
@@ -189,7 +194,7 @@ try {
   
   const decodedToken= jwt.verify(incomingRefreshToken,process.env.REFRESH_TOKEN_SECRET);
   
-  const user= User.findById(decodedToken?._id);
+  const user=await User.findById(decodedToken?._id);
   
   if(!user){
       throw new ApiError(401,"Invalid refresh token");
@@ -203,13 +208,19 @@ try {
   
   const options={
     httpOnly:true,
-    secure:true
+    secure:true,
+    maxAge: 7 * 24 * 60 * 60 * 1000
+
   }
   
   const {accessToken,newRefreshToken}=await generateAccessAndRefreshTokens(user._id);
   
   return res.status(200)
-  .cookie("accessToken",accessToken,options)
+  .cookie("accessToken",accessToken,{
+    httpOnly:true,
+  secure:true,
+    maxAge:3 * 60 * 60 * 1000
+  })
   .cookie("refreshToken",newRefreshToken,options)
   .json(
     new ApiResponse(
@@ -229,20 +240,20 @@ try {
 })
 
 //change password//
-const changeCurrentPassword= asyncHandler(async(res,req)=>{
-const {oldPassword,newPassword}= req.body
+const changeCurrentPassword= asyncHandler(async(req,res)=>{
 
-console.log(oldPassword,"-",newPassword)
+const {oldpassword,newpassword}= req.body
+
 
 
 const user = await User.findById(req.user?._id)
-const  isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
+const  isPasswordCorrect = await user.isPasswordCorrect(oldpassword);
 
 if(!isPasswordCorrect){
 throw new ApiError(400,"Invalid password")
 }
 
-user.password = newPassword;
+user.password = newpassword;
 
 await user.save({validateBeforeSave:false})
 

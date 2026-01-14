@@ -19,6 +19,9 @@ import History from './pages/history/History.jsx'
 import LikedVideos from './pages/liked videos/LikedVideos.jsx'
 import Dashboard from './pages/dashboard/Dashboard.jsx'
 import Support from './pages/Support.jsx'
+import ChangeProfile from './component/editprofile/ChangeProfile.jsx'
+import EditProfile from './pages/EditProfile/EditProfile.jsx'
+import PlaylistVideos from './pages/playlist/PlaylistVideos.jsx'
 
 
 const router = createBrowserRouter(
@@ -33,8 +36,9 @@ const router = createBrowserRouter(
         <Route path='/videocard' element={<VideoCard />} />
         <Route path='/comment' element={<Commentcard />} />
         <Route path='/mychannel/:username' element={<MyChannel />} />
+        <Route path='/mychannel/:username/edit' element={<EditProfile />} />
         <Route path='/channel/:username' element={<Channel />} />
-        <Route path='/sidebar' element={<Sidebar />} />
+        <Route path='/playlist/:playlistId' element={<PlaylistVideos />} />
         <Route path='/mychannel-history' element={<History />} />
         <Route path='/mychannel-likedvideos' element={<LikedVideos />} />
         <Route path='/mydashboard' element={<Dashboard />} />

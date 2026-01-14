@@ -12,28 +12,28 @@ const name = data?.data?.username;
     return (
         <div className="sidebarmain">
             <div className="slide1">
-<Link to={'/'} className='slidelink'>
-<div className="slides">👍<div className="links">Home</div></div>
+<Link to={'/'} className='slidelink one'>
+<div className="slides"><i class="fa-regular fa-house"></i><div className="links">Home</div></div>
 </Link>
 
-<Link to={'/mychannel-likedvideos'} className='slidelink'>
-<div className="slides">👍<div className="links">Liked Videos</div></div>
+<Link to={'/mychannel-likedvideos'} className='slidelink two'>
+<div className="slides"><i class="fa-regular fa-thumbs-up"></i><div className="links">Liked Videos</div></div>
 </Link>
 
-<Link to={'/mychannel-history'} className='slidelink'>
-<div className="slides">👍<div className="links">History</div></div>
+<Link to={'/mychannel-history'} className='slidelink three'>
+<div className="slides"><i class="fa-solid fa-clock-rotate-left"></i><div className="links">History</div></div>
 </Link>
 
-<Link to={`/mychannel/${name}`} className='slidelink'>
-<div className="slides">👍<div className="links">My Content</div></div>
+<Link to={`/mychannel/${name}`} className='slidelink four'>
+<div className="slides"><i class="fa-regular fa-file-video"></i><div className="links">My Content</div></div>
 </Link>
 
-<Link to={`/mychannel/${name}`} state={{switchState:"Playlists"}} className='slidelink'>
-<div className="slides">👍<div className="links">Collections</div></div>
+<Link to={`/mychannel/${name}`} state={{switchState:"Playlists"}} className='slidelink five'>
+<div className="slides"><i class="fa-regular fa-folder"></i><div className="links">Collections</div></div>
 </Link>
 
-<Link to={`/mychannel/${name}`} state={{switchState:"subscribed"}} className='slidelink'>
-<div className="slides">👍<div className="links">Subscriptions</div></div>
+<Link to={`/mychannel/${name}`} state={{switchState:"subscribed"}} className='slidelink six'>
+<div className="slides"><i class="fa-solid fa-users"></i><div className="links">Subscriptions</div></div>
 </Link>
 
 
@@ -44,11 +44,11 @@ const name = data?.data?.username;
 
             <div className="slide2">
 <Link to={'/support'} className='slidelink'>
-<div className="slides">👍<div className="links">Support</div></div>
+<div className="slides"><i class="fa-regular fa-circle-question"></i><div className="links">Support</div></div>
 </Link>
 
 <Link to={'/mydashboard'} className='slidelink'>
-<div className="slides">👍<div className="links">Setting</div></div>
+<div className="slides"><i class="fa-solid fa-gear"></i><div className="links">Setting</div></div>
 </Link>
 
 

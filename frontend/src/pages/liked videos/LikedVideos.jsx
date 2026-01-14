@@ -12,7 +12,7 @@ import { useGetLikedVideosQuery } from '../../services/like/likeApi';
 
 function LikedVideos() {
 
-const {data,isError,isLoading,refetch} = useGetLikedVideosQuery()
+const {data,error,isLoading,refetch} = useGetLikedVideosQuery()
 const videos = data?.data || [];
 
 
@@ -39,14 +39,14 @@ const videos = data?.data || [];
 )}
 
 
-{isError && (
-    <div style={{height:"100%",width:"100%",textAlign:"center"}} className="error">
-        <h1>Error Fetching WatchHistory</h1>
+{error && (
+    <div style={{height:"100vh",width:"100vw",textAlign:"center"}} className="error">
+        <h1>Error Fetching Liked Videos,Please Login</h1>
     </div>
 )}
           
 
-{!isError && !isLoading && videos.length > 0? (
+{!isLoading && !error && videos.length > 0? (
 
     videos.map((video,idx)=>(
  <div key={video?._id || idx} className="likedvideoss">

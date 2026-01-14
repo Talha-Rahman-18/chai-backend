@@ -18,7 +18,6 @@ function PlaylistCard ({data, editAndDelete=true}){
     });
 
 const {data:playlistsData,refetch} = useGetUserPlaylistsQuery(data,{skip:!data});
-console.log("playlist",playlistsData);
 
 
 const playlists = playlistsData?.data || [];
@@ -80,16 +79,19 @@ const handleEdit = async()=>{
 
 return (
     <>
-    {/* link */}
     <div className="playlistcont">
     {playlists && playlists.length >0 ?  ( 
-        playlists.map((playlist,idx)=>(
-       
-       <div className="playlist" key={playlist?._id || idx}>
-        <div className="imgplaylist">
-            <img id='playlistimage' src={playlist?.videos[0]?.thumbnail  || plyimg} alt={playlist?.name} />
 
-            
+        playlists.map((playlist,idx)=>(
+
+        <Link key={playlist?._id || idx} to={`/playlist/${playlist?._id}`}>
+
+       <div className="playlist" key={playlist?._id || idx}>
+
+       <div className="imgplaylist">
+
+        <img id='playlistimage' src={playlist?.videos[0]?.thumbnail  || plyimg} alt={playlist?.name} />
+ 
         <div className="infoplaylist">
             <div className="playlistname">
                 <p>{playlist?.name}</p>
@@ -101,7 +103,8 @@ return (
         </div>
 
         <div className="edits">
-            <Button text={"edit"} width={"100%"}
+
+            <Button text={<i class="fa-solid fa-pen-to-square"></i>} width={"50%"}
              backgroundColor={"green"}
             color={"white"}
             onClick={(e)=>{
@@ -110,8 +113,7 @@ return (
             }}
             />
            
-
-            <Button text={"delete"} width={"100%"}
+            <Button text={<i class="fa-solid fa-trash"></i>} width={"50%"}
             backgroundColor={"red"}
             color={"white"}
             onClick={(e)=>{
@@ -121,12 +123,16 @@ return (
             />
             
         </div>
+
         </div>
+
        </div>
+
+         </Link>
       
     ) )):(<div style={{height:"100%",width:"100vw",textAlign:"center"}}><h1>No playlist created </h1></div>)}
  </div>
-   {/* link */}
+  
 
    
 {isOpen && selectPlaylist &&(

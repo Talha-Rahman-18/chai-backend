@@ -50,7 +50,9 @@ if(location.state?.switchState !== undefined){
 } subscriber&nbsp;·&nbsp;{channel?.channelsSubscribedToCount}subscribed</p>
                         </div>
                         <div className="editchannel">
+                            <Link to={`/mychannel/${channel?.username}/edit`}>
                             <Button width={"150px"} text={"Edit"} backgroundColor={"red"} />
+                            </Link>
                         </div>
                     </div>
                 </div>

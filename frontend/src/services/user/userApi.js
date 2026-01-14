@@ -1,6 +1,5 @@
 import {createApi} from "@reduxjs/toolkit/query/react"
-import {baseApi} from '../baseApi.js'
-
+import { baseApi } from "../baseApi";
 
 export const userApi = createApi({
     reducerPath: 'userApi',
@@ -27,7 +26,8 @@ refreshAccessToken:builder.mutation({
     query:(body)=>({
         url:'/users/refresh-token',
         method:'POST',
-        ...(body?{body}:{})
+        ...(body?{body}:{}),
+        credentials:"include"
     })
 }),
 

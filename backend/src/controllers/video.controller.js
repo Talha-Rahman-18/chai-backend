@@ -59,7 +59,7 @@ const getAllVideos = asyncHandler(async(req,res)=>{
     const sortDirection= sortType === "asc"? 1:-1;
 
 //regex mainly check in title that the word in query exist or not//>
-    const matchStage= query?{title:{$regex:query,$options:"i"}} : {};
+    const matchStage= query?{tittle:{$regex:query,$options:"i"}} : {};
 
      const sortStage = {
         //key value pair and sortBy is "createdAt" so its createdAt=sortDirection help query in pipeline

@@ -86,7 +86,7 @@ const playlist = await Playlist.aggregate([
     {
         $lookup:{
             from:"videos",
-            localField:"video",
+            localField:"videos",
             foreignField:"_id",
             as:"videos",
             pipeline:[
@@ -185,9 +185,13 @@ return res
 const removeVideoFromPlaylist = asyncHandler(async(req,res)=>{
 
     const {playlistId,videoId} = req.params;
+    console.log(playlistId,videoId)
 
-    if(!isValidObjectId(playlistId) || !isValidObjectId(videoId)){
-        throw new ApiError(400,"Invalid playlist Id or video id")
+    if(!isValidObjectId(playlistId)){
+        throw new ApiError(400,"Invalid playlist Id")
+    }
+    if(!isValidObjectId(videoId)){
+    throw new ApiError(400,"Invalid video Id")    
     }
 
 const playlist = await Playlist.findByIdAndUpdate(

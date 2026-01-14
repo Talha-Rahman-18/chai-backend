@@ -80,7 +80,7 @@ return (
                 <h4>{channel.fullName} &nbsp;.&nbsp;{formateTimeAgo(tweet.createdAt)} </h4> 
                 <p>{tweet.content}</p>
                 <Button
-                text={"👍"}
+                text={<i class="fa-regular fa-thumbs-up"></i>}
                 height={"4vh"}
                 width={"2vw"}
                 backgroundColor={"whitesmoke"}
@@ -95,7 +95,7 @@ return (
             height={"40px"}
             backgroundColor={"red"}
             color={"white"}
-            text={"Delete"}
+            text={<i class="fa-solid fa-trash"></i>}
             onClick={(e)=>{
                 e.preventDefault();
                 handleDelete(tweet._id)

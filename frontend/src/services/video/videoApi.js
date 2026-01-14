@@ -6,10 +6,24 @@ export const videoApi = createApi({
     baseQuery: baseApi,
     tagTypes: ['Video'],
     endpoints: (builder) => ({
-        getAllVideos: builder.query({
-            query: () => '/videos',
-            providesTags: ['Video']
-        }),
+
+ getAllVideos: builder.query({
+  query: () =>
+    `/videos`,
+  providesTags: ["Video"],
+}),
+
+       getAllVideosSearch: builder.query({
+  query: ({
+    page =1,
+    limit = 10,
+    query = "",
+    sortBy = "createdAt",
+    sortType = "desc",
+  }) =>
+    `/videos?page=${page}&limit=${limit}&query=${query}&sortBy=${sortBy}&sortType=${sortType}`,
+  providesTags: ["Video"],
+}),
 
         publishAVideo: builder.mutation({
             query: (formData) => ({
@@ -73,6 +87,7 @@ export const videoApi = createApi({
 
 export const { 
     useGetAllVideosQuery, 
+    useGetAllVideosSearchQuery,
     usePublishAVideoMutation, 
     useGetAllUserVideosQuery, 
     useGetVideoByIdQuery, 

@@ -24,6 +24,7 @@ const {data,error,isLoading,refetch}= useGetVideoByIdQuery(videoId);
 const name=useGetCurrentUserQuery().data?.data?.username;
 
 const video = data?.data?.[0] || [];
+console.log(video)
 
 const [subscribe] = useToggleSubscriptionMutation();
 
@@ -123,7 +124,11 @@ const allvideos= allvideo?.data?.docs || []
 </div>
 
 <div id="likesave">
-    <Button text={`👍${video.likesCount}`} width={"100px"} backgroundColor={"transparent"} onClick={handlelike} disabled={isliking} border={"1px solid black"} />
+    <div className="likeee">
+
+    <Button id='likebutton' text={<i class="fa-regular fa-thumbs-up"></i> } width={"50px"} backgroundColor={"transparent"} onClick={handlelike} disabled={isliking} border={"none"} /> <span>{video?.likesCount}</span>
+    </div>
+
 <div ref={wrapperRef} className="addply">
 
 <Button text={"Save+"} backgroundColor={"black"} color={"white"} onClick={()=>setOpen(prev=> !prev)} />
@@ -177,7 +182,7 @@ const allvideos= allvideo?.data?.docs || []
         {!videoloading && !videoerror && allvideos.length>0 && (
 
             allvideos.map((video,idx)=>(
-        <div className="sidevideos">
+        <div key={video?._id || idx} className="sidevideos">
 <Postcard 
 _id={video?._id}
     tittle={video?.tittle}

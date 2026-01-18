@@ -12,6 +12,7 @@ import Postcard from '../../component/postcard/postcard'
 import { useToggleSubscriptionMutation } from '../../services/subscription/subscriptionApi'
 import { useGetCurrentUserQuery } from '../../services/user/userApi'
 import AddPlaylist from '../../component/playlist/AddPlaylist'
+import { api } from '../../services/api'
 
 
 function Player() {
@@ -85,7 +86,7 @@ const allvideos= allvideo?.data?.docs || []
 ) }
 
 {!isLoading && error && (
-<div style={{height:"100vh",width:"100vw",zIndex:50,display:"flex",alignItems:"center",justifyContent:"center"}}><h1>{error}</h1></div>
+<div style={{height:"100vh",width:"100vw",zIndex:50,display:"flex",alignItems:"center",justifyContent:"center"}}><h1>Error loading video{error}</h1></div>
 )}
 
 {!isLoading && !error && (
@@ -126,12 +127,12 @@ const allvideos= allvideo?.data?.docs || []
 <div id="likesave">
     <div className="likeee">
 
-    <Button id='likebutton' text={<i class="fa-regular fa-thumbs-up"></i> } width={"50px"} backgroundColor={"transparent"} onClick={handlelike} disabled={isliking} border={"none"} /> <span>{video?.likesCount}</span>
+    <Button id='likebutton' text={<i class="fa-regular fa-thumbs-up"></i> } width={"2vw"} backgroundColor={"transparent"} onClick={handlelike} disabled={isliking} border={"none"} /> <span>{video?.likesCount}</span>
     </div>
 
 <div ref={wrapperRef} className="addply">
 
-<Button text={"Save+"} backgroundColor={"black"} color={"white"} onClick={()=>setOpen(prev=> !prev)} />
+<Button width={"70px"} text={"Save+"} backgroundColor={"black"} color={"white"} onClick={()=>setOpen(prev=> !prev)} />
     
   {open && (
  <div className="plyform">
@@ -160,7 +161,7 @@ const allvideos= allvideo?.data?.docs || []
 </div>
 
 <div id="subbtn">
-    <Button id="button" backgroundColor={video.channel.isSubscribed? "whitesmoke" : "red"} text={video.channel.isSubscribed? "Subscribed" : "Subscribe"} width={"max-content"} color={video.channel.isSubscribed? "red" : "white"} onClick={handleSubscribe} />
+    <Button id="button" backgroundColor={video.channel.isSubscribed? "whitesmoke" : "red"} text={video.channel.isSubscribed? "Subscribed" : "Subscribe"} width={"85px"} color={video.channel.isSubscribed? "red" : "white"} onClick={handleSubscribe} />
 </div>
 
 </div>

@@ -228,7 +228,7 @@ totalSubscriber}</h2>
 <p>{video?.isPublished? "Published":"Unpublished"}</p>
 
 <div className="imgg">
-    <img style={{height:"50px",width:"50px",borderRadius:"50%",border:"2px solid black"}} src={video?.thumbnail
+    <img style={{height:"40px",width:"40px",borderRadius:"50%",border:"2px solid black"}} src={video?.thumbnail
 } alt="avatar" /> <h4>{video?.tittle}</h4>
 </div>
 

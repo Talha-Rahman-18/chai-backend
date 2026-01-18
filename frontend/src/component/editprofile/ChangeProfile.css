@@ -16,17 +16,21 @@
     align-items: center;
 }
 #infoform{
-    height: 90%;
-    width: 96%;
-    padding: 1%;
-    border-radius: 8px;
+    width: 100%;
     border: 2px solid black;
+     border-radius: 8px;
+     padding: 1vh;
+}
+.infoform{
+    height: 85%;
+    width: 100%;
+    padding: 1vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
 }
-#infoform input{
+.infoform input{
     height: 10%;
     width: 90%;
     padding: 1%;
@@ -35,21 +39,44 @@
     border-radius: 14px;
     background-color: transparent;
 }
-#infoform input::placeholder{
+.infoform input::placeholder{
     color: black;
 }
-#infoform label{
+.infoform label{
     font-size: 1.1rem;
     align-self: flex-start;
 }
 
 
 .buttonsave{
-    height: 25%;
-    width: 100%;
-    padding-right: 2%;
-    border-top: 2px solid #000;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+   height: 15%;
+   width: 100%;
+   padding-top: 1vh;
+   border-top: 1px solid black;
+   display: flex;
+   justify-content: flex-end;
+}
+
+@media (max-width:600px) {
+    .changemain{
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+    }
+    .text{
+       width: 100%;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+    }
+    .changeform{
+        height: max-content;
+        width: 95%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .infoform input{
+        height: 6vh;
+    }
 }

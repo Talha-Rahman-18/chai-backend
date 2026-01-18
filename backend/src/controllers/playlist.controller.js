@@ -55,7 +55,6 @@ return res.status(200)
 
 const getPlaylistById = asyncHandler(async(req,res)=>{
     const {playlistId} = req.params;
-    console.log("back id",playlistId);
 
     if(!playlistId){
         throw new ApiError(404,"Playlist Id not found")

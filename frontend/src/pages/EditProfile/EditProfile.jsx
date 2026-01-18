@@ -81,7 +81,8 @@ try {
 {/* infoandavatar */}
                 <div className="editchannelinfocont">
                     <div className="editavatarchannel">
-                      <label id='avatarlabel' htmlFor="avatarinput">
+                        <div className="uploadavatars">
+                             <label id='avatarlabel' htmlFor="avatarinput">
                         <input
                         id='avatarinput'
                         type="file"
@@ -90,11 +91,12 @@ try {
                         />
                         {avatarLoading? <i class="fa-solid fa-spinner"></i> : <i class="fa-solid fa-cloud-arrow-up"></i>}
                       </label>
+                        </div>
+                     
                     </div>
                     
 
                     {/* channeldetail */}
-                    <div className="editchanneldatas">
                         <div className="editmetadata">
                             <h3>{channel?.fullName}</h3>
                             <p>@{channel?.username}</p>
@@ -104,10 +106,9 @@ try {
                         {/* editbutton */}
                         <div className="viewchannel">
                             <Link to={`/mychannel/${channel?.username}`}>
-                            <Button width={"150px"} text={"View channel"} backgroundColor={"red"} color={"white"} />
+                            <Button width={"15vw"} text={"view"} backgroundColor={"red"} color={"white"} />
                             </Link>
                         </div>
-                    </div>
                 </div>
             </div>
 
@@ -117,6 +118,7 @@ try {
             
                 <Button
                 onClick={()=>setSwitchState('change profile')}
+                height={"100%"}
                 text={"Change profile"}
                 backgroundColor={switchState === 'change profile'? "red" : "transparent"}
                 color={switchState === 'change profile'? "white" : "black"}
@@ -124,10 +126,11 @@ try {
                 />
                 <Button
                 onClick={()=>setSwitchState('change password')}
+                height={"100%"}
                 text={"Change password"}
                 backgroundColor={switchState === 'change password'? "red" : "transparent"}
                 color={switchState === 'change password'? "white" : "black"}
-                borderBottom={switchState === 'subscribed'? "3px solid black" : "none"}
+                borderBottom={switchState === 'change password'? "3px solid black" : "none"}
                 />
 
             </div>

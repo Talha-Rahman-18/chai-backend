@@ -146,12 +146,12 @@ return (
         <div className="headedit">
             <h3>Edti Playlist</h3>
             <div className="editbtns">
-                <Button text={"×"} width={"50px"} 
+                <Button text={"×"} width={"30px"} height={"40px"}
                 onClick={(e)=>{e.preventDefault();
                     setisOpen(false);
                 }}
                 />
-            <Button text={"save"} width={"100px"}
+            <Button text={"save"} width={"2vw"} height={"40px"}
              type='submit'
             />
             </div>

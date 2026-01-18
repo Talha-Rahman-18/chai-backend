@@ -29,6 +29,7 @@ width: 40%;
 display: flex;
 flex-direction: column;
 z-index: 1000;
+background-color: black;
 }
 .formcont{
     height: 100%;
@@ -41,7 +42,6 @@ z-index: 1000;
     border-radius: 8px;
     padding: 2%;
     border-bottom: 2px solid white;
-    background-color: rgb(0, 0, 0);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -50,7 +50,7 @@ z-index: 1000;
 
 
 .videoinputs{
-    height: 85%;
+    height: 90%;
     width: 96%;
     padding: 2%;
     display: flex;
@@ -166,4 +166,33 @@ gap: 1vh;
 .operations{
     display: flex;
     gap: 1vw;
+}
+
+@media (max-width:900px) {
+    .editvideo{
+        height: 85vh;
+        display: flex;
+        align-items: flex-start;
+    }
+    .videoeditform{
+        height: 80%;
+        width:90%;
+    }
+    #dashinfos{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1vh;
+    }
+    .box{
+        height: 15vh;
+        width: 90%;
+    }
+    .dashboardwork{
+        font-size: .8rem;
+    }
+    .videostatus{
+        font-size: .7rem;
+    }
 }

@@ -50,8 +50,8 @@ const handlEdit =async (e)=>{
             </div>
             <div className="changeform">
                 <form id='infoform' onSubmit={handlEdit}>
-
-                <label htmlFor='fullName'>FullName*</label>
+                <div className="infoform">
+<label htmlFor='fullName'>FullName*</label>
                 <input 
                 type='text'
                 name='fullName'
@@ -68,6 +68,8 @@ const handlEdit =async (e)=>{
                 onChange={onchange}
                 placeholder='Enter a Valid Email'
                 />
+                </div>
+                
 
 <div className="buttonsave">
     <Button type='submit' text={"save"} color={"white"} backgroundColor={"red"} width={"100px"} />

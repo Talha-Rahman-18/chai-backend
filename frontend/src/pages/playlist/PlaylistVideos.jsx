@@ -46,6 +46,7 @@ function PlaylistVideos() {
                 </div>
             </div>
             <div className="ownersdata">
+                <h2>By:</h2>
                 <div id="playchnnlimg">
                      <img src={playlistinfo?.owner?.avatar} alt={playlistinfo?.owner?.username} />
                 </div>
@@ -77,7 +78,7 @@ function PlaylistVideos() {
                         />
 </div>
 <div className="buttondelete">
-    <Button text={"delete"} height={"50px"} width={"100px"} backgroundColor={"red"} onClick={()=>deletevideo(video?._id)} />
+    <Button text={<i class="fa-solid fa-trash"></i>} height={"50px"} width={"1vw"} backgroundColor={"transparent"} onClick={()=>deletevideo(video?._id)} />
 </div>
                     </div>
 

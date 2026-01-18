@@ -61,7 +61,7 @@ return(
                     text={"subscribed"} />
                 </div>
        ))
-        ) : (<h1 >No channel subscribed </h1>)}
+        ) : (<h1 style={{textAlign:"center"}} >No channel subscribed </h1>)}
         
     </div>
     </>

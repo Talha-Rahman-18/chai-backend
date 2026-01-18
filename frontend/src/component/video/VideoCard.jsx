@@ -148,7 +148,7 @@ isPublished && (
    <div className="addvideo" onClick={(e)=>e.stopPropagation()}>
 
    <div className="cancle">
-    <Button backgroundColor={"red"} color={"white"} text={'×'} width={"50px"} 
+    <Button backgroundColor={"white"} color={"black"} text={<i class="fa-solid fa-xmark"></i>} width={"50px"} 
     onClick={()=>setisOpen(false)}
     />
 

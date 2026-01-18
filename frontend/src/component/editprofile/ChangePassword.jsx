@@ -65,7 +65,8 @@ e.preventDefault();
             <div className="passchangeform">
                 <form id='passinfoform' onSubmit={handlChangepass}>
 
-                <label htmlFor='oldpassword'>Old Password*</label>
+                    <div className="passinfoform">
+                        <label htmlFor='oldpassword'>Old Password*</label>
                 <input 
                 type='password'
                 id='oldpassword'
@@ -93,6 +94,9 @@ e.preventDefault();
                 placeholder='Enter Password Again'
                 />
 
+                    </div>
+
+                
 <div className="passbuttonsave">
     <Button type='submit' text={"save"} color={"white"} backgroundColor={"red"} width={"80px"} height={"90%"}  />
 </div>

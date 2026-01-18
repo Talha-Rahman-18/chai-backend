@@ -186,11 +186,11 @@ gap: 1vh;
         gap: 1vh;
     }
     .box{
-        height: 15vh;
+        height: 16%;
         width: 90%;
     }
     .dashboardwork{
-        font-size: .8rem;
+        font-size: .75rem;
     }
     .videostatus{
         font-size: .7rem;

@@ -1,5 +1,4 @@
 
-
 .header {
   position: fixed;
   top: 0;
@@ -11,7 +10,7 @@
   color: white;
   z-index: 1000;
   display: flex;
-
+ 
   
 }
 .headercont{
@@ -55,20 +54,24 @@
   width: 60px;
   border-radius: 50%;
 }
-
+.dots{
+  display: none;
+}
+.menubar{
+  display: none;
+}
 @media (max-width:900px) {
   .header{
-    width: 100vw;
-    display: flex;
-    align-items: center;
+    width: 100%;
+    
   }
+  
   .logohead{
     height: 95%;
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: pink;
   }
   
   #logoapp{
@@ -79,7 +82,86 @@
     justify-content: center;
 
   }
-  .elementheader button{
+  .elementheader{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8vw;
+  }
+  #headbutton{
     display: none;
   }
+  .channellink{
+    height: 100%;
+    width: 50%;
+  }
+  .dots{
+    height: 100%;
+    width: 50%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: flex-end;
+  }
+
+/* menubar */
+.menubar{
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.menutab{
+  height:100%;
+  width: 80%;
+  border-left: 1px solid #000;
+  background-color: rgb(255, 255, 255);
+  align-self: flex-end; 
+}
+
+
+
+.menuhead{
+  height: max-content;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bars{
+  height: 60%;
+  width: 100%;
+  padding-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4vh;
+}
+.bars a{
+  height: 10%;
+  width: 95%;
+  font-family: arial;
+  font-size: 1.3rem;
+  border: 2px solid black;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2vw;
+}
+
+.lgout{
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+}
+
 }

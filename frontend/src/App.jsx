@@ -22,8 +22,7 @@ import { useGetCurrentUserQuery, useRefreshAccessTokenMutation } from './service
 
 function App() {
 
-  const {data} = useGetCurrentUserQuery();
-const user = data?.data || [];
+  
 
 return (
    

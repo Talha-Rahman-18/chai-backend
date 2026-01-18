@@ -9,6 +9,7 @@ import Postcard from '../../component/postcard/postcard'
 function Home() {
 
     const [search,setsearch] = useState("");
+
 const {data:videos,isLoading,error} = useGetAllVideosSearchQuery({
     page:1,
     query:search,

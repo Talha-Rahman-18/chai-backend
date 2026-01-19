@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 const app=express();
 
 app.use(cors({
-    origin:[process.env.CORS_ORIGIN,"https://chai-backend-lime.vercel.app/" ],
+    origin:[process.env.CORS_ORIGIN,"https://frontend-frontend-brown.vercel.app/" ],
     credentials:true
 
 }))

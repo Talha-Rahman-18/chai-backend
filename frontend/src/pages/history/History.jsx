@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import './History.css'
 import { useGetCurrentUserQuery, useGetWatchHistoryQuery } from '../../services/user/userApi'
-import Postcard from '../../component/postcard/postcard';
+import { Postcard } from '../../component/Postcard/PostCard';
 import { formateTimeAgo } from '../../utils/formateTimeAgo';
 import { formateViews } from '../../utils/formateViews';
 

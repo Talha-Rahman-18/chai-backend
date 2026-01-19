@@ -4,7 +4,7 @@ import { useGetCurrentUserQuery } from '../../services/user/userApi'
 import './Home.css'
 import { api } from '../../services/api'
 import { useGetAllVideosQuery, useGetAllVideosSearchQuery } from '../../services/video/videoApi'
-import Postcard from '../../component/postcard/postcard'
+import { Postcard } from '../../component/Postcard/PostCard'
 
 function Home() {
 

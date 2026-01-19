@@ -2,11 +2,10 @@ import React from 'react'
 import { useEffect } from 'react';
 import './LikedVideos.css'
 import { useGetCurrentUserQuery, useGetWatchHistoryQuery } from '../../services/user/userApi'
-import Postcard from '../../component/postcard/postcard';
 import { formateTimeAgo } from '../../utils/formateTimeAgo';
 import { formateViews } from '../../utils/formateViews';
 import { useGetLikedVideosQuery } from '../../services/like/likeApi';
-
+import { Postcard } from '../../component/Postcard/PostCard';
 
 
 

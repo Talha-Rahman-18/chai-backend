@@ -4,6 +4,7 @@ import { formateViews } from '../../utils/formateViews';
 import { formateDuration } from '../../utils/formateDuration';
 import { Link } from 'react-router-dom';
 import { useGetCurrentUserQuery } from '../../services/user/userApi';
+
 function Postcard({
     _id,
     tittle,
@@ -58,4 +59,4 @@ function Postcard({
 
 }
 
-export default Postcard
+export  {Postcard}

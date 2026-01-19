@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import './Dashboard.css'
 import { useGetChannelStatsQuery } from '../../services/dashboard/dashboardApi'
-import { useGetCurrentUserQuery } from '../../services/user/userApi';
-import { useGetUserChannelSubscribersQuery } from '../../services/subscription/subscriptionApi';
 import { useDeleteVideoMutation, usePublishAVideoMutation, useTogglePublishStatusMutation, useUpdateVideoMutation } from '../../services/video/videoApi';
 import { formateTimeAgo } from '../../utils/formateTimeAgo';
 import Button from '../../component/button/Button';

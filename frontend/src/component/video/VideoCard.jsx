@@ -1,14 +1,9 @@
 import { memo,useRef,useState } from "react";
 import './VideoCard.css'
 import { Link } from "react-router-dom";
-import { formateTimeAgo } from "../../utils/formateTimeAgo";
-import {formateDuration} from '../../utils/formateDuration'
-import {formateViews} from '../../utils/formateViews'
 import {useGetAllUserVideosQuery,useGetAllVideosQuery,usePublishAVideoMutation} from '../../services/video/videoApi'
-import toast from "react-hot-toast";
-import Postcard from "../postcard/postcard";
 import Button from "../button/Button";
-import { useGetCurrentUserQuery } from "../../services/user/userApi";
+import { Postcard } from "../Postcard/PostCard";
 
 const VideoCard=memo(({data,userSpecificVideos=true,addVideoBtn=false})=>{
 
@@ -21,7 +16,6 @@ const VideoCard=memo(({data,userSpecificVideos=true,addVideoBtn=false})=>{
         videoFile:null,
         thumbnail:null,
     });
-
     const [isOpen,setisOpen] = useState(false);
 
     const {data:allvideos,error:allerror,isLoading:allloading} = useGetAllVideosQuery({

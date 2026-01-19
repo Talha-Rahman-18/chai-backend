@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useGetPlaylistByIdQuery, useRemoveVideoFromPlaylistMutation } from '../../services/playlist/playlistApi';
 
 import plyimg from './playlist.jpg'
-import Postcard from '../../component/postcard/postcard';
+import { Postcard } from '../../component/Postcard/PostCard';
 import Button from '../../component/button/Button';
 
 

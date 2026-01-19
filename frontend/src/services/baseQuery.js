@@ -1,5 +1,4 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { useLogoutUserMutation } from "./user/userApi";
 import conf from "../conf/conf";
 
 

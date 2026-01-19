@@ -88,7 +88,7 @@ return(
 {/* button  */}
 <Button type='submit' color={"white"} backgroundColor={"red"} width={"85%"} text={"Login"} alignSelf={"center"}/>
 
-<Button color={"white"} backgroundColor={"red"} width={"85%"} text={"Login as Demo"} alignSelf={"center"}/>
+{/* <Button color={"white"} backgroundColor={"red"} width={"85%"} text={"Login as Demo"} alignSelf={"center"}/> */}
 
 
 <p>Dont have an account?&nbsp;SignUp</p>

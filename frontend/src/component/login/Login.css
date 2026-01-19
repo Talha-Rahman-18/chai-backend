@@ -51,3 +51,14 @@ label{
    align-items: center;
    gap: 4vh;
 }
+
+@media (max-width:600px) {
+    .inpcont{
+        width: 80%;
+    }
+    
+    .inputform input{
+        width: 100%;
+        font-size: 1.3rem;
+    }
+}

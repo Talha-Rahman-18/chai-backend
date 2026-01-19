@@ -1,4 +1,5 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+
 import conf from "../conf/conf";
 
 
@@ -7,7 +8,7 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
 });
 
-export const baseQueryWithReauth = async (args, api, extraOptions) => {
+ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
   let result = await baseQuery(args, api, extraOptions);
   if (result.error?.
@@ -32,3 +33,6 @@ originalStatus === 401) {
 
   return result;
 };
+
+
+export default baseQueryWithReauth;

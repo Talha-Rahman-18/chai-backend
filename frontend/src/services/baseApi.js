@@ -2,7 +2,7 @@ import {fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import conf from '../conf/conf.js'
 
 export const baseApi = fetchBaseQuery({
-    baseUrl:import.meta.env.VITE_BACKEND_URL,
+    baseUrl:conf.backendUrl,
     credentials:"include",
     prepareHeaders:(headers,{endpoint})=>{
 

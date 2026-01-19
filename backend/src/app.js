@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 const app=express();
 
 app.use(cors({
-    origin:[process.env.CORS_ORIGIN,"https://frontend-frontend-brown.vercel.app/" ],
+    origin:[process.env.CORS_ORIGIN,"https://frontend-frontend-7r78x03fd-talha-rahmans-projects-22314897.vercel.app" ],
     credentials:true
 
 }))

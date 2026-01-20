@@ -62,6 +62,7 @@ if(location.state?.switchState !== undefined){
                             <p>{channel?.subscribersCount
 } subscriber&nbsp;·&nbsp;{channel?.channelsSubscribedToCount}subscribed</p>
                         </div>
+                    </div>
                         <div className="editchannel">
                             <Button width={"85px"} 
                             border={"2px solid black"}
@@ -70,7 +71,6 @@ isSubscribed? "black" : "white"}backgroundColor={channel?.isSubscribed? "whitesm
                             onClick={handleSubscribe}
                             />
                         </div>
-                    </div>
                 </div>
             </div>
             <div className="componenttags">

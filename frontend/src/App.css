@@ -26,6 +26,7 @@ display: none;
   margin-top: 10vh;   
   min-height: calc(100vh - 10vh);
   padding-top: 1vh;  
+  padding-bottom: 2vh;
   margin-left: 80px; 
 
 }

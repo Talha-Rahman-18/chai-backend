@@ -136,14 +136,16 @@ const loggedInUser= await User.findById(user._id).select("-password -refreshToke
 const options={
   httpOnly:true,
   secure:true,
-    maxAge: 7 * 24 * 60 * 60 * 1000
+  sameSite: "none",
+  maxAge: 7 * 24 * 60 * 60 * 1000
 }
 
 return res.status(200)
 .cookie("accessToken",accessToken,{
   httpOnly:true,
   secure:true,
-    maxAge:3 * 60 * 60 * 1000
+  sameSite: "none",
+  maxAge:3 * 60 * 60 * 1000
 })
 .cookie("refreshToken",refreshToken,options)
 .json(
@@ -209,6 +211,7 @@ try {
   const options={
     httpOnly:true,
     secure:true,
+     sameSite: "none",
     maxAge: 7 * 24 * 60 * 60 * 1000
 
   }

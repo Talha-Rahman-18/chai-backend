@@ -41,7 +41,7 @@
 }
 .channeldatas{
     height: 100%;
-    width: 85% ;
+    width: 70% ;
     display: flex;
     justify-content: space-between;
 }
@@ -119,7 +119,7 @@
 @media (max-width:600px) {
     .avatarchannel{
     height: 100%;
-    width: 25%;
+    width: 35%;
    
 }
 .coverimagecont{
@@ -140,13 +140,15 @@
 .metadata{
     width: 100%;
     display: flex;
+    font-size: .9rem;
     flex-direction: column;
     justify-content: center;
 }
 
 .editchannel{
     height: 100%;
-    width: 25%;
+    width: 35%;
+    font-size: .9rem;
    
 }
 

@@ -47,7 +47,7 @@ if(location.state?.switchState !== undefined){
                             <h3>{channel?.fullName}</h3>
                             <p>@{channel?.username}</p>
                             <p>{channel?.subscribersCount
-} subscriber&nbsp;·&nbsp;{channel?.channelsSubscribedToCount}subscribed</p>
+} subscriber&nbsp;·&nbsp;{channel?.channelsSubscribedToCount}&nbsp;subscribed</p>
                         </div>
                     </div>
                         <div className="editchannel">

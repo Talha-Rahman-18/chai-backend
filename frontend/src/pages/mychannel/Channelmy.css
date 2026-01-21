@@ -138,9 +138,9 @@
     
 }
 .metadata{
-    width: 100%;
+    width: 70%;
     display: flex;
-    font-size: .9rem;
+    font-size: .8rem;
     flex-direction: column;
     justify-content: center;
 }
@@ -149,8 +149,12 @@
     height: 100%;
     width: 35%;
     font-size: .9rem;
+    display: flex;
+    justify-content: flex-start;
    
 }
-
+.componenttags button{
+    font-size: .9rem;
+}
     
 }

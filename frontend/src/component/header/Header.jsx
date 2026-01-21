@@ -20,7 +20,7 @@ const {data,error,isLoading,refetch} =useGetCurrentUserQuery();
 const user = data?.data;
 const name = data?.data?.username;
 
-const auth = !!user || !!localStorage.getItem('token');
+const auth =!!user && !!localStorage.getItem('token');
 
 const [logout] = useLogoutUserMutation();
 

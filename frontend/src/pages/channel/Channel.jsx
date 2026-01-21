@@ -52,17 +52,18 @@ if(location.state?.switchState !== undefined){
                     <img src={channel?.coverImage} alt={"coverimage"} />
                 </div>
                 <div className="channelinfocont">
+
                     <div className="avatarchannel">
                         <img src={channel?.avatar} alt={"avatar"} />
                     </div>
-                    <div className="channeldatas">
+
                         <div className="metadata">
                             <h3>{channel?.fullName}</h3>
                             <p>@{channel?.username}</p>
                             <p>{channel?.subscribersCount
 } subscriber&nbsp;·&nbsp;{channel?.channelsSubscribedToCount}subscribed</p>
                         </div>
-                    </div>
+
                         <div className="editchannel">
                             <Button width={"85px"} 
                             border={"2px solid black"}
@@ -71,6 +72,7 @@ isSubscribed? "black" : "white"}backgroundColor={channel?.isSubscribed? "whitesm
                             onClick={handleSubscribe}
                             />
                         </div>
+
                 </div>
             </div>
             <div className="componenttags">

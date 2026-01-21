@@ -100,6 +100,8 @@ const loginUser=asyncHandler( async (req,res)=>{
   
   //get data
   const {email,username,password}=req.body
+
+  console.log(email)
   
   //check if username or email
   if(!username && !email){
@@ -142,7 +144,7 @@ const options={
 
 return res.status(200)
 .cookie("accessToken",accessToken,{
-  httpOnly:true,
+ httpOnly:true,
   secure:true,
   sameSite: "none",
   maxAge:3 * 60 * 60 * 1000
@@ -188,7 +190,7 @@ return res
 const  refreshAccessToken= asyncHandler(async(req,res)=>{
 
   const incomingRefreshToken= req.cookies.refreshToken || req.body.refreshToken
-  console.log("ref",incomingRefreshToken)
+
   if(!incomingRefreshToken){
     throw new ApiError(401,"unauthorized request");
   }
@@ -211,18 +213,18 @@ try {
   const options={
     httpOnly:true,
     secure:true,
-     sameSite: "none",
-    maxAge: 7 * 24 * 60 * 60 * 1000
-
+    sameSite: "none",
+    maxAge:7 * 24 * 60 * 60 * 1000
   }
   
   const {accessToken,newRefreshToken}=await generateAccessAndRefreshTokens(user._id);
   
   return res.status(200)
   .cookie("accessToken",accessToken,{
-    httpOnly:true,
+   httpOnly:true,
   secure:true,
-    maxAge:3 * 60 * 60 * 1000
+  sameSite: "none",
+  maxAge:3 * 60 * 60 * 1000
   })
   .cookie("refreshToken",newRefreshToken,options)
   .json(

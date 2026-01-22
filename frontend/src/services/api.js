@@ -6,8 +6,10 @@ export const api = createApi({
     reducerPath:"api",
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
-   getCurrentUser:builder.query({
+   getcurrentuser:builder.query({
     query:()=>'/users/current-user'
 }),
   }),
 });
+
+export const {useGetcurrentuserQuery} = api

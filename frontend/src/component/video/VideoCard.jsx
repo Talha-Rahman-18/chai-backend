@@ -3,7 +3,13 @@ import './VideoCard.css'
 import { Link } from "react-router-dom";
 import {useGetAllUserVideosQuery,useGetAllVideosQuery,usePublishAVideoMutation} from '../../services/video/videoApi'
 import Button from "../button/Button";
-import { Postcard } from "../Postcard/PostCard";
+import PostCard from "../PostCard/PostCard";
+
+
+
+
+
+
 
 const VideoCard=memo(({data,userSpecificVideos=true,addVideoBtn=false})=>{
 
@@ -115,7 +121,7 @@ const handleClick =()=>{
     {video?.
 isPublished && (
   <div className="video"> 
-<Postcard 
+<PostCard 
     _id={video?._id}
     tittle={video?.tittle}
     thumbnail={video?.thumbnail}

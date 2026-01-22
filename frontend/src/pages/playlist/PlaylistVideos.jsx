@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import { useGetPlaylistByIdQuery, useRemoveVideoFromPlaylistMutation } from '../../services/playlist/playlistApi';
 
 import plyimg from './playlist.jpg'
-import { Postcard } from '../../component/Postcard/PostCard';
 import Button from '../../component/button/Button';
+import PostCard from '../../component/PostCard/PostCard'
 
 
 
@@ -67,7 +67,7 @@ function PlaylistVideos() {
 
                     <div key={video?._id || idx} id="playlistvideo">
 <div className="videoofply">
-     <Postcard 
+     <PostCard 
                         _id={video?._id}
                         tittle={video?.tittle}
                         thumbnail={video?.thumbnail}

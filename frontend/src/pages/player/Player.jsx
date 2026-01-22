@@ -8,12 +8,10 @@ import Commentcard from '../../component/commentcard/Commentcard'
 import './Player.css'
 import Button from '../../component/button/Button'
 import { useToggleVideoLikeMutation } from '../../services/like/likeApi'
-import { Postcard } from '../../component/Postcard/PostCard'
 import { useToggleSubscriptionMutation } from '../../services/subscription/subscriptionApi'
 import { useGetCurrentUserQuery } from '../../services/user/userApi'
 import AddPlaylist from '../../component/playlist/AddPlaylist'
-import { api } from '../../services/api'
-
+import PostCard from '../../component/PostCard/PostCard'
 
 function Player() {
 
@@ -118,12 +116,10 @@ const allvideos= allvideo?.data?.docs || []
     <div className="tittleandlike">
         <div id="titles">
 <h2>{video.tittle}</h2>
+</div>
 <p>{formateViews(video.views)}&nbsp;views&nbsp;·&nbsp;{formateTimeAgo(video.createdAt)}</p>
 
-
-
-</div>
-
+    </div>
 <div id="likesave">
     <div className="likeee">
 
@@ -142,7 +138,6 @@ const allvideos= allvideo?.data?.docs || []
    
 </div>
 </div>
-    </div>
 
 
 {/* channel */}
@@ -161,7 +156,7 @@ const allvideos= allvideo?.data?.docs || []
 </div>
 
 <div id="subbtn">
-    <Button id="button" backgroundColor={video.channel.isSubscribed? "whitesmoke" : "red"} text={video.channel.isSubscribed? "Subscribed" : "Subscribe"} width={"85px"} color={video.channel.isSubscribed? "red" : "white"} onClick={handleSubscribe} />
+    <Button id="button" backgroundColor={video.channel.isSubscribed? "whitesmoke" : "red"} text={video.channel.isSubscribed? "Subscribed" : "Subscribe"} width={"200px"} color={video.channel.isSubscribed? "red" : "white"} onClick={handleSubscribe} />
 </div>
 
 </div>
@@ -184,7 +179,7 @@ const allvideos= allvideo?.data?.docs || []
 
             allvideos.map((video,idx)=>(
         <div key={video?._id || idx} className="sidevideos">
-<Postcard 
+<PostCard 
 _id={video?._id}
     tittle={video?.tittle}
     thumbnail={video?.thumbnail}

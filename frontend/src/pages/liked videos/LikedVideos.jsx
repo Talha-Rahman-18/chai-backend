@@ -5,8 +5,7 @@ import { useGetCurrentUserQuery, useGetWatchHistoryQuery } from '../../services/
 import { formateTimeAgo } from '../../utils/formateTimeAgo';
 import { formateViews } from '../../utils/formateViews';
 import { useGetLikedVideosQuery } from '../../services/like/likeApi';
-import { Postcard } from '../../component/Postcard/PostCard';
-
+import PostCard from '../../component/PostCard/PostCard'
 
 
 function LikedVideos() {

@@ -61,17 +61,18 @@ if(location.state?.switchState !== undefined){
                             <h3>{channel?.fullName}</h3>
                             <p>@{channel?.username}</p>
                             <p>{channel?.subscribersCount
-} subscriber&nbsp;·&nbsp;{channel?.channelsSubscribedToCount}subscribed</p>
-                        </div>
+} subscriber&nbsp;·&nbsp;{channel?.channelsSubscribedToCount}&nbsp;subscribed</p>
 
                         <div className="editchannel">
-                            <Button width={"85px"} 
-                            border={"2px solid black"}
+                            <Button width={"200px"} 
+                            border={"1px solid black"}
                             color={channel?.
-isSubscribed? "black" : "white"}backgroundColor={channel?.isSubscribed? "whitesmoke" : "red"} text={channel?.isSubscribed? "Subscribed" : "Subscribe"} 
+                             isSubscribed? "black" : "white"}backgroundColor={channel?.isSubscribed? "whitesmoke" : "red"} text={channel?.isSubscribed? "Subscribed" : "Subscribe"} 
                             onClick={handleSubscribe}
                             />
                         </div>
+                        </div>
+
 
                 </div>
             </div>

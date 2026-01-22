@@ -2,11 +2,9 @@ import React from 'react'
 import { useEffect } from 'react';
 import './History.css'
 import { useGetCurrentUserQuery, useGetWatchHistoryQuery } from '../../services/user/userApi'
-import { Postcard } from '../../component/Postcard/PostCard';
 import { formateTimeAgo } from '../../utils/formateTimeAgo';
 import { formateViews } from '../../utils/formateViews';
-
-
+import PostCard from '../../component/PostCard/PostCard'
 
 
 function History() {
@@ -48,7 +46,7 @@ watchHistory || [];
 
     videos.map((video,idx)=>(
  <div key={video?._id || idx} className="historyvideo">
-<Postcard 
+<PostCard
     _id={video?._id}
     tittle={video?.tittle}
     thumbnail={video?.thumbnail}

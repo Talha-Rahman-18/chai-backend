@@ -14,6 +14,9 @@ try {
   const accessToken=user.generateAccessToken();
   const refreshToken=user.generateRefreshToken();
 
+  console.log("access::",accessToken)
+    console.log("reff",refreshToken)
+
 
 user.refreshToken=refreshToken;
  await user.save({validateBeforeSave: false});//it dont validate any field before save the refresh token
@@ -147,7 +150,7 @@ return res.status(200)
  httpOnly:true,
   secure:true,
   sameSite: "none",
-  maxAge:3 * 60 * 60 * 1000
+  maxAge:24 * 60 * 60 * 1000
 })
 .cookie("refreshToken",refreshToken,options)
 .json(
@@ -217,7 +220,14 @@ try {
     maxAge:7 * 24 * 60 * 60 * 1000
   }
   
-  const {accessToken,newRefreshToken}=await generateAccessAndRefreshTokens(user._id);
+  const {accessToken,refreshToken}=await generateAccessAndRefreshTokens(user._id);
+
+  console.log(refreshToken)
+
+  user.refreshToken = refreshToken;
+  await user.save({validateBeforeSave:false})
+
+  console.log("DB REFRESH TOKEN:", user.refreshToken);
   
   return res.status(200)
   .cookie("accessToken",accessToken,{
@@ -226,10 +236,10 @@ try {
   sameSite: "none",
   maxAge:3 * 60 * 60 * 1000
   })
-  .cookie("refreshToken",newRefreshToken,options)
+  .cookie("refreshToken",refreshToken,options)
   .json(
     new ApiResponse(
-      200,{accessToken,newRefreshToken},
+      200,{accessToken,refreshToken},
       "Access Token Refreshed"
     )
   )

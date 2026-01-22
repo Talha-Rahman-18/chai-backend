@@ -20,6 +20,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     
 }
 
@@ -33,7 +34,7 @@ body{
 }
 #videoinfos{
     height: max-content;
-    width: 98%;
+    width: 95%;
     padding-top: 2vh;
     padding-bottom: 1vh;
     margin-bottom: 5%;
@@ -46,30 +47,30 @@ body{
     border: 1px solid rgb(0, 0, 0);
 }
 .tittleandlike{
+    width: 95%;
+    padding: 1%;
     height: max-content;
-    width: 96%;
+    overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
 }
 #titles{
-    height: 100%;
-    width: 70%;
+    height: 10%;
     margin-bottom: 2%;
     padding-left: 1%;
+    
 }
-#titles h2,p{
-    margin: 0;
-    padding: 0;
-    text-align: left;
-}
+
 #likesave{
-    height: 100%;
-    width: 30%;
+    height: 10vh;
+    width: 100%;
+    padding: 1%;
     margin-bottom: 2%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    gap: 5vw;
 }
 .likeee{
     width: 100px;
@@ -86,7 +87,8 @@ body{
 }
 #chnnlsub{
     height: 20%;
-    width: 96%;
+    width: 98%;
+    padding: 2%;
     margin-bottom: 2%;
     display: flex;
     align-items: center;
@@ -139,20 +141,29 @@ body{
 }
 #subbtn{
     height: 100%;
-    width: 20%;
+    width: 30%;
     display: flex;
     justify-content: center;
 }
 #des{
-    height: 20%;
+    height: 5vh;
     width: 100%;
-    padding: 1%;
+    padding: 2%;
+    font-family: arial;
     margin-bottom: 2%;
     border-top: 1px solid black;
+    overflow: auto;
+    word-wrap: break-word;
+
+}
+#des::-webkit-scrollbar{
+    display: none;
 }
 #commentvideo{
     height:max-content;
-    width: 98%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -187,7 +198,6 @@ body{
     }
     
     #videoinfos{
-        width: 100%;
         box-sizing: border-box;
        
     }
@@ -195,25 +205,6 @@ body{
         height: 50vh;
         width: 98%;
         box-sizing: border-box;
-    }
-    .addply{
-        width: 3vw;
-    }
-    .likeee{
-        width: 20vw;
-    }
-    .tittleandlike{
-        display: flex;
-        gap: 1vw;
-    }
-    #titles{
-        width: 50%;
-    }
-    #likesave{
-        width: 50%;
-        display: flex;
-        justify-content: space-evenly;
-        gap: 4vw;
     }
     
     #chnnlname{
@@ -237,7 +228,7 @@ body{
         align-items: center;
     }
     .sidevideos{
-        height: 50vh;
+        height: max-content;
         width: 95%;
     }
     .plyform{
@@ -252,7 +243,7 @@ body{
     z-index: 50;        
 }
 }
-
+ 
 @media (max-width:600px) {
     .sidevideos{
         height: 35vh;
@@ -265,12 +256,12 @@ body{
     .plyform{
     width: 50vw;
     position: absolute;
-    top: 450px;    
-    left: 45%;
+    top: 580px;    
+    left: 30%;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 50;        
 }
-}
+} 

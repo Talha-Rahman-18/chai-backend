@@ -5,7 +5,7 @@ import { formateDuration } from '../../utils/formateDuration';
 import { Link } from 'react-router-dom';
 import { useGetCurrentUserQuery } from '../../services/user/userApi';
 
-function Postcard({
+function PostCard({
     _id,
     tittle,
     thumbnail,
@@ -37,7 +37,7 @@ function Postcard({
                     </Link>
                 </div>
                 <div className="allinfo">
-                    <h3 >{tittle}</h3>
+                    <h3 className='tittle' >{tittle}</h3>
                     
                     <p>{formateViews(views)}&nbsp;views&nbsp;·&nbsp;{formateTimeAgo(createdAt)}</p>
                     <p>@{username}</p>
@@ -59,4 +59,4 @@ function Postcard({
 
 }
 
-export  {Postcard}
+export default PostCard

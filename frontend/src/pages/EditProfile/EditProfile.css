@@ -41,7 +41,7 @@
 }
 .editavatarchannel{
     height: 100%;
-    width: 15%;
+    width: 25%;
    display: flex;
     align-items: flex-start;
     justify-content: flex-end;
@@ -58,8 +58,8 @@
   z-index: -1; 
 }
 .uploadavatars{
-    height:150px;
-    width: 150px;
+    height:250px;
+    width: 250px;
     background-color: white;
     border: 2px solid rgb(0, 0, 0);
     position: relative;
@@ -71,24 +71,19 @@
 }
 
 .editmetadata{
-    width: 85%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    gap: 1vh;
     /* background-color: pink; */
 }
 .editmetadata h3{
     margin: 0;
     padding: 0;
 }
-.viewchannel{
-   height: 100%;
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 /* tags  */
 .editcomponenttags{
@@ -130,53 +125,50 @@
 
 @media (max-width:900px) {
 .editavatarchannel{
-    width: 20%;
+    width: 25%;
 }
 
     .uploadavatars{
-        height: 100px;
-        width: 100px;
+        height: 150px;
+        width: 150px;
     }
-    .channeldatas{
-        width: 80%;
-        height: 10vh;
+    .editmetadata{
+        /* width: 70%;
+        height: max-content;
+        display: flex;
+        flex-direction: column;
+        gap: 1vh; */
     }
     
 }
 
 @media (max-width:600px) {
+
+    
     .editavatarchannel{
     height: 100%;
-    width: 25%;
+    width: 35%;
    
+}
+.editmetadata{
+    width: 60%;
+    padding-bottom: 2vh;
 }
 .editcoverimagecont{
     height: 20vh;
     width: 100%;
 }
 .uploadavatars{
-    height:80px;
-    width: 80px;
-    top: -2vh;
+    height:120px;
+    width:120px;
+    top: -5vh;
     
-}
-.channeldatas{
-    height: 100%;
-    width: 70% ;
-    
-}
-.editmetadata{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .viewchannel{
     height: 100%;
     width: 30%;
     font-size: 1rem;
-   
 }
 
 

@@ -107,7 +107,7 @@ return(
         }}></Button>
     </div>
     ))
-):(<p style={{alignSelf:"center",marginTop:"20px"}}>No comments on this video</p>)}
+):(<p style={{alignSelf:"center",marginTop:"20px",paddingTop:"2vh"}}>No comments on this video</p>)}
     
     </div> 
      

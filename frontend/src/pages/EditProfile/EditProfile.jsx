@@ -101,14 +101,15 @@ try {
                             <h3>{channel?.fullName}</h3>
                             <p>@{channel?.username}</p>
                             
-                        </div>
-
-                        {/* editbutton */}
+                        {/* channel view */}
                         <div className="viewchannel">
                             <Link to={`/mychannel/${channel?.username}`}>
-                            <Button width={"15vw"} text={"view"} backgroundColor={"red"} color={"white"} />
+                            <Button width={"200px"} text={"view"} backgroundColor={"red"} color={"white"} />
                             </Link>
                         </div>
+
+                        </div>
+
                 </div>
             </div>
 

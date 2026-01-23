@@ -163,7 +163,14 @@
   justify-content: center;
   gap: 1vw;
 }
-
+.unauthdots{
+    height: 100%;
+    width: 100%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }
 @media (max-width:600px) {
   .unauthdots{

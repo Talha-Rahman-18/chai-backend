@@ -6,7 +6,7 @@ const app=express();
 
 app.use(cors({
     origin:["http://localhost:5173",
-        "https://frontend-frontend-brown.vercel.app" 
+        "https://tuminol.vercel.app" 
     ],
     credentials:true
 

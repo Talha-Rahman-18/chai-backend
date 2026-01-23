@@ -22,6 +22,7 @@ import Support from './pages/Support.jsx'
 import ChangeProfile from './component/editprofile/ChangeProfile.jsx'
 import EditProfile from './pages/EditProfile/EditProfile.jsx'
 import PlaylistVideos from './pages/playlist/PlaylistVideos.jsx'
+import Loading from './component/loading/Loading.jsx'
 
 
 const router = createBrowserRouter(
@@ -30,7 +31,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path='/login' element={<Login />} />        
         <Route path='/register' element={<Register />} />
-
+        <Route path='/loading' element={<Loading />} />
 <Route element={<ProtectedRoute />} >
         <Route path='/player/:videoId' element={<Player />} />
         <Route path='/videocard' element={<VideoCard />} />

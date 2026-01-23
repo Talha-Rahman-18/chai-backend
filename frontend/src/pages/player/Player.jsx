@@ -13,6 +13,7 @@ import { useGetCurrentUserQuery } from '../../services/user/userApi'
 import AddPlaylist from '../../component/playlist/AddPlaylist'
 import PostCard from '../../component/PostCard/PostCard'
 import toast from 'react-hot-toast'
+import Loading from '../../component/loading/Loading'
 
 function Player() {
 
@@ -83,11 +84,13 @@ const allvideos= allvideo?.data?.docs || []
         <>
 
 {isLoading && (
-            <div style={{height:"100vh",width:"100vw",zIndex:50,display:"flex",alignItems:"center",justifyContent:"center"}}><h1>Loading...</h1></div>
+
+<div style={{height:"100vh",width:"100vw",zIndex:50,display:"flex",alignItems:"center",justifyContent:"center"}}><Loading /></div>
+
 ) }
 
 {!isLoading && error && (
-<div style={{height:"100vh",width:"100vw",zIndex:50,display:"flex",alignItems:"center",justifyContent:"center"}}><h2>Error loading video</h2></div>
+<div style={{height:"100vh",width:"100vw",zIndex:50,display:"flex",alignItems:"center",justifyContent:"center"}}><h2>Error loading video,Please Login</h2></div>
 )}
 
 {!isLoading && !error && (

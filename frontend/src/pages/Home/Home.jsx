@@ -4,7 +4,7 @@ import './Home.css'
 import { api, useGetcurrentuserQuery } from '../../services/api'
 import { useGetAllVideosQuery, useGetAllVideosSearchQuery } from '../../services/video/videoApi'
 import PostCard from '../../component/PostCard/PostCard'
-
+import Loading from '../../component/loading/Loading'
 
 function Home() {
 
@@ -33,7 +33,7 @@ const {
 
      <div id='home'>
         {userloading && (
-          <h1 style={{height:"100vh",width:"100vw",textAlign:"center"}}>Loading......</h1>
+          <Loading />
         )}
 
 <div className="search">
@@ -77,15 +77,6 @@ const {
 
 
 </div>
-
-
-
-
-
-
-
-
-
 
      </div>   
     )

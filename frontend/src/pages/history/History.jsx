@@ -5,7 +5,7 @@ import { useGetCurrentUserQuery, useGetWatchHistoryQuery } from '../../services/
 import { formateTimeAgo } from '../../utils/formateTimeAgo';
 import { formateViews } from '../../utils/formateViews';
 import PostCard from '../../component/PostCard/PostCard'
-
+import Loading from '../../component/loading/Loading'
 
 function History() {
 
@@ -29,9 +29,7 @@ watchHistory || [];
    <div className="mainhistory">
 
 {isLoading && (
-    <div style={{height:"100%",width:"100%",textAlign:"center"}} className="error">
-        <h2>Loading WatchHistory...</h2>
-    </div>
+    <Loading />
 )}
 
 

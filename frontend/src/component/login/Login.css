@@ -52,9 +52,11 @@ label{
    gap: 4vh;
 }
 
-@media (max-width:600px) {
+
+
+@media (max-width:900px) {
     .inpcont{
-        width: 90%;
+        width: 60%;
     }
     
     .inputform input{
@@ -64,9 +66,9 @@ label{
     }
 }
 
-@media (max-width:900px) {
+@media (max-width:600px) {
     .inpcont{
-        width: 60%;
+        width: 90%;
     }
     
     .inputform input{

@@ -6,7 +6,7 @@ import { formateTimeAgo } from '../../utils/formateTimeAgo';
 import { formateViews } from '../../utils/formateViews';
 import { useGetLikedVideosQuery } from '../../services/like/likeApi';
 import PostCard from '../../component/PostCard/PostCard'
-
+import Loading from '../../component/loading/Loading'
 
 function LikedVideos() {
 
@@ -35,7 +35,7 @@ const videos = data?.data || [];
 
 {isLoading && (
     <div style={{height:"100%",width:"100%",textAlign:"center"}} className="error">
-        <h2>Loading Liked Videos...</h2>
+        <Loading />
     </div>
 )}
 

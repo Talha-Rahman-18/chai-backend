@@ -29,9 +29,9 @@ const onchange= (e)=>{
 
 const handlEdit =async (e)=>{
 
-if(!form.fullName || !form.email){
-    toast.error("All field should be fulfilled")
-}
+// if(!form.fullName || !form.email){
+//     toast.error("All field should be fulfilled")
+// }
 
     try {
     e.preventDefault();
@@ -46,7 +46,7 @@ if(!form.fullName || !form.email){
     refetchUser();
 
 } catch (error) {
-    toast.error("Error in Update Profile")
+    toast.error(error.data)
     console.log(`Error in Update Profile,${error}`)
 }
 }

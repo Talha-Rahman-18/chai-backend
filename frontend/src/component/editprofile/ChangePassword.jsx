@@ -30,6 +30,11 @@ const handlechange = (e)=>{
 const handlChangepass =async (e)=>{
 e.preventDefault();
 
+ if(!form.newpassword || !form.confirmpassword || !form.oldpassword){
+        toast.error("Please fill all the fields")
+        return;
+    }
+
     if(form.newpassword !== form.confirmpassword){
         toast.error("New password and confirm password doesnt match")
         return;
@@ -52,7 +57,7 @@ e.preventDefault();
     refetchuser();
 
 } catch (error) {
-    toast.error("Error in Update password")
+    toast.error(error.data)
     console.log(`Error in Update password,${error}`)
 }
 }

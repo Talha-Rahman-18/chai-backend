@@ -4,7 +4,7 @@ import { useGetChannelStatsQuery } from '../../services/dashboard/dashboardApi'
 import { useDeleteVideoMutation, usePublishAVideoMutation, useTogglePublishStatusMutation, useUpdateVideoMutation } from '../../services/video/videoApi';
 import { formateTimeAgo } from '../../utils/formateTimeAgo';
 import Button from '../../component/button/Button';
-
+import toast from 'react-hot-toast'
 
 
 function Dashboard() {
@@ -43,9 +43,9 @@ const videos = user?.videoDetails || [];
 
 const [toggle,{isLoading:toggleLoading}]  = useTogglePublishStatusMutation();
 
-const [deleteVideo] = useDeleteVideoMutation();
+const [deleteVideo,{isLoading:deleteloading}] = useDeleteVideoMutation();
 
-const [updateVideo] = useUpdateVideoMutation();
+const [updateVideo,{isLoading:updateloading}] = useUpdateVideoMutation();
 
 
 const handeditform=(video)=>{
@@ -86,10 +86,12 @@ seteditvideo(null);
 });
 
 
-    alert("video updated succesfully");
-  } catch (error) {
+    toast.success("video updated succesfully");
 
-    alert("video updation failed",error);
+  } catch (error) {
+    toast.error("video updation failed")
+    console.log("video updation failed",error);
+
   }  
 }
 
@@ -100,15 +102,17 @@ const handledelete = async (id)=>{
 try {
  
     await deleteVideo(id).unwrap();
-    alert("Video Deleted Successfully")
+    toast.success("Video Deleted Successfully")
     refetch();
 
 } catch (error) {
-    alert("video delete failed")
+    toast.error("video delete failed")
     console.log("video dlete error",error)
 
 }
 }
+
+// publisetoggle
 
 const togglePublish = async (video)=>{
 try {
@@ -117,7 +121,7 @@ try {
     refetch();
 
 } catch (error) {
-    alert("Failed to toggle publish video")
+    toast.error("Failed to toggle publish video")
     console.log(`Failed to toggle publish video,${error?.message || error}`)
 
 }
@@ -168,7 +172,7 @@ value={form.description}
 onChange={handleChange}
 />
 
-<Button type='submit' text={"save"} />
+<Button type='submit' color={updateloading ? "gray" :" black"} text={updateloading? "saving..." : "save"} />
 
 </div>
 
@@ -182,22 +186,22 @@ onChange={handleChange}
            <div className="dashtext">
             <h1>Admin Panel</h1>
             <h2>Welcome, {user?.username}</h2>
-            <p>Seamless Video Management, Elevated Results.</p>
+            <p style={{width:"100%",textAlign:"center"}}>Seamless Video Management, Elevated Results.</p>
            </div>
 
            <div id="dashinfos">
             <div className="box">
-                <h1>😎</h1>
+                <h2><i class="fa-solid fa-eye"></i></h2>
                 <p>Total Views</p>
                 <h2>{user?.totalViews}</h2>
             </div>
             <div className="box">
-                <h1>😎</h1>
+                <h2><i class="fa-solid fa-heart"></i></h2>
                 <p>Total Likes</p>
                 <h2>{user?.totalLikes}</h2>
             </div>
             <div className="box">
-                <h1>😎</h1>
+                <h2><i class="fa-solid fa-people-group"></i></h2>
                 <p>Total Subscribers</p>
                 <h2>{user?.
 totalSubscriber}</h2>
@@ -227,9 +231,9 @@ totalSubscriber}</h2>
 
 <div className="imgg">
     <img style={{height:"40px",width:"40px",borderRadius:"50%",border:"2px solid black"}} src={video?.thumbnail
-} alt="avatar" /> <h4>{video?.tittle}</h4>
+} alt="avatar" /> 
 </div>
-
+<h4>{video?.tittle}</h4>
 <p>{formateTimeAgo(video?.createdAt)}</p>
 
 <div className="operations">

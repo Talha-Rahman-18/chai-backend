@@ -3,7 +3,6 @@ import { memo } from 'react'
 import {useToggleTweetLikeMutation} from '../../services/like/likeApi.js'
 import {useCreateTweetMutation,useGetUserTweetQuery,
 useUpdateTweetMutation,useDeleteTweetMutation} from '../../services/tweet/tweetApi.js'
-import coll4 from './coll4.jpg'
 import { formateTimeAgo } from '../../utils/formateTimeAgo.js'
 import toast from 'react-hot-toast'
 import Button from '../button/Button.jsx'
@@ -26,21 +25,33 @@ const handleLike= async(tweetId)=>{
 
         await toggleTweetLike(tweetId).unwrap();
         refetch();
-       
-        
-        
+
     } catch (error) {
-console.error('Failed to toggle like:', error);
+
+toast.error('Failed to toggle like:');
+console.log(error)
     }
 };
 
+// tweetcreation
 const handleTweetSubmit = async (e)=>{
 e.preventDefault();
-await createTweet({content:e.target[0].value});
-e.target[0].value="";
-refetch();
+
+try {
+    await createTweet({content:e.target[0].value});
+    
+    e.target[0].value="";
+    
+    refetch();
+
+    toast.success("Tweet Created")
+} catch (error) {
+    toast.error("Error in posting tweet")
+}
+
 };
 
+// delete 
 const handleDelete = async(tweetId)=>{
     try {
         await deleteTweet(tweetId).unwrap();
@@ -48,7 +59,7 @@ const handleDelete = async(tweetId)=>{
         refetch();
         
     } catch (error) {
-      toast.error(`Failed to delete tweet! ${error?.message || ""}`) ; 
+      toast.error('Failed to delete tweet!') ; 
     }
 };
 
@@ -72,11 +83,17 @@ return (
 {Usertweets && Usertweets.length>0?(
 
 [...Usertweets].reverse().map((tweet,idx)=>(
+
      <div key={tweet._id || idx} className="tweetcont">
+
             <div className="tweetimg">
+
             <img className="tweet" src={channel.avatar} alt={channel.username} />
+           
             </div>
+
             <div className="tweetcontent">
+
                 <h4>{channel.fullName} &nbsp;.&nbsp;{formateTimeAgo(tweet.createdAt)} </h4> 
                 <p>{tweet.content}</p>
                 <Button
@@ -89,8 +106,10 @@ return (
                     handleLike(tweet._id);
 
                 }} /> 
+
                 <span>{tweet.likesCount? tweet.likesCount.count : 0}&nbsp;Like</span>
             </div>
+
             <Button
             height={"40px"}
             backgroundColor={"red"}
@@ -100,10 +119,11 @@ return (
                 e.preventDefault();
                 handleDelete(tweet._id)
             }} />
+
         </div>
 ))
 
-):(<div><h1 style={{textAlign:"center",color:"black"}}>No tweet for this channel!</h1></div>)}
+):(<div><h2 style={{textAlign:"center",color:"black"}}>No tweet for this channel!</h2></div>)}
 
 
 

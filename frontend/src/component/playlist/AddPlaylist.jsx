@@ -4,6 +4,8 @@ import { useGetCurrentUserQuery } from '../../services/user/userApi';
 import { useAddVideoToPlaylistMutation, useCreatePlaylistMutation, useGetUserPlaylistsQuery } from '../../services/playlist/playlistApi';
 import Input from '../input/Input';
 import Button from '../button/Button';
+import toast from 'react-hot-toast'
+
 
 const AddPlaylist = memo((videoId)=>{
 
@@ -22,8 +24,10 @@ const handlePlaylist = async()=>{
         await createPlaylist({name:addPlaylist}).unwrap();
         setAddPlaylist("");
         refetch();
+
+        toast.success("Playlist Created")
     } catch (error) {
-       alert("create playlist error"); 
+       toast.error("Creating playlist error"); 
     }
 }
 
@@ -46,13 +50,11 @@ const handleSaveToPlaylist = async (id)=>{
             videoId: videoId?.videoId,
             playlistId:id,
         }).unwrap();
-        console.log("select plaaylist successfull")
-        console.log(id);
+        toast.success("Video saved to the playlist")
     
         setSavedPlaylist((prev)=>new Set(prev).add(id));
     } catch (error) {
-        alert(`playlist not create :${error}`)
-        console.log("select playlist error",error.data);
+    toast.error("select playlist error");
     }
 }
 
@@ -86,6 +88,7 @@ return (
             type={"text"} 
             height={"40px"} 
             width={"95%"} 
+            padding={"1vw"}
             borderRadius={"8px"} />
 
           <Button

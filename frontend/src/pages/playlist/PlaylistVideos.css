@@ -8,6 +8,7 @@
 .playlistleft{
     height: 100%;
     width: 40%;
+    padding-bottom: 2vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,7 +25,9 @@
 }
 .metadataplaylist{
     height: 20%;
-    width: 96%;
+    width: 100%;
+    word-break: break-all;
+    overflow: auto;
     padding: 2%;
     position: relative;
     top: -30%;
@@ -36,21 +39,20 @@
 }
 
 .ownersdata{
-    height:20vh;
-    width: 100%;
-    padding-left: 2vw;
+    height:max-content;
+    width: 90%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1vw;
+    justify-content: space-evenly;
+   
 }
 
 #playchnnlimg{
     height: 100%;
-    width: 10%;
+    width: 30%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 #playchnnlimg img{
     height: 60px;
@@ -59,8 +61,11 @@
 }
 
 #chnnldata{
-    height: 100%;
+    height: max-content;
     width: 80%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    word-break: break-all;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -118,6 +123,7 @@
 .playlistleft{
     height: 50vh;
     width: 100%;
+    padding-bottom: 4vh;
     display: flex;
     border-bottom: 1px solid gray;
     flex-direction: column;
@@ -138,22 +144,25 @@
         border: none;
     }
     .videoofply{
-        width: 95%;
-        height: 45vh;
+        width: 90%;
+        height: 50vh;
     }
     .buttondelete{
         width: 10%;
         align-self: flex-end;
     }
      .ownersdata{
-        gap: 6vw;
+        height: max-content;
+        word-break: break-all;
+        padding-bottom: 2vh;
+        gap: 10vw;
     }
     
 } 
 @media (max-width:600px) {
     .videoofply{
-      width: 100%;
-    height: 35vh;  
+    width: 90%;
+    height: 40vh; 
     }
     .playlistpage{
         padding: 0;

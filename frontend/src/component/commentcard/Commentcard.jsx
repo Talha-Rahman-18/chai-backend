@@ -32,14 +32,16 @@ const handleAddComment = async (e) => {
 
   try {
     await addComment({
+
       videoId,
       body: { content: addingComment }
     }).unwrap();
-    setaddingComment("")
 
+    setaddingComment("")
     refetch();
+
   } catch (error) {
-    toast.error(`Failed to add comment! ${error?.message || ""}`);
+    toast.error("Failed to add comment!");
   }
 };
 
@@ -57,14 +59,20 @@ const handleDeleteComment = async(commentId)=>{
 
 return(
     <>
-    {isLoading && (
-        <div style={{height:"100%",width:"100%",zIndex:50,display:"flex",alignItems:"center",justifyContent:"center"}}><h1>Loading comments...</h1></div>
-    )}
+    
     
    <div className="contcomment">
+
+    {isLoading && (
+        <div style={{height:"100%",width:"100%",zIndex:50,display:"flex",alignItems:"center",justifyContent:"center"}}><h3>Loading comments...</h3></div>
+    )}
+
     <form id="inputs"  onSubmit={handleAddComment}>
+
     <div className="inputs">
+
     <h4 style={{margin:"0",padding:"0",alignSelf:"flex-start"}}>{comments?.length}&nbsp;comments</h4>
+
     <Input
     id="input"
     value={addingComment}
@@ -72,6 +80,7 @@ return(
     padding={"1%"}  
     onChange={(e)=>setaddingComment(e.target.value)}
     />
+
     <Button 
     text={"Comment"}
     height={"50px"}
@@ -82,22 +91,34 @@ return(
     justifyContent={"center"}
     alignSelf={"center"}
     />
+
    </div>
+
    </form>
+
+{/* allcomments */}
 
 {comments && comments && comments.length>0?(
     comments.map((comment,idx)=>(
+
        <div key={comment._id || idx} className="cmmntcontent">
+
         <div className="img">
+
             <Link to={name===comment?.commentor?.username? `/mychannel/${comment?.commentor?.username}` : `/channel/${comment?.commentor?.username}`}>
+        
         <img className="cmmnt" src={comment?.commentor?.avatar} alt="" />
+        
         </Link>
         </div>
+
         <div className="content">
+
             <h4>{comment?.commentor?.fullName} &nbsp;.&nbsp;{formateTimeAgo(comment.createdAt)}</h4> <span>@{comment?.commentor?.username}</span>
-           
             <p>{comment.content}</p>
+
             </div>
+
         <Button backgroundColor={"red"}
         color={"white"}
         text={<i class="fa-solid fa-trash"></i>}
@@ -105,9 +126,12 @@ return(
             e.preventDefault();
             handleDeleteComment(comment._id)
         }}></Button>
+
     </div>
     ))
-):(<p style={{alignSelf:"center",marginTop:"20px",paddingTop:"2vh"}}>No comments on this video</p>)}
+):(
+<p style={{alignSelf:"center",marginTop:"20px",paddingTop:"2vh"}}>No comments on this video</p>
+)}
     
     </div> 
      

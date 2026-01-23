@@ -9,6 +9,7 @@ import { useGetUserChannelProfileQuery } from '../../services/user/userApi'
 import { useState } from 'react'
 import { Link,useLocation,useParams } from 'react-router-dom'
 import { useGetSubscribedChannelsQuery, useToggleSubscriptionMutation } from '../../services/subscription/subscriptionApi'
+import toast from 'react-hot-toast'
 
 
 function Channel() {
@@ -32,8 +33,8 @@ const handleSubscribe = async ()=>{
         refetch();
         
     } catch (error) {
-       alert(`Issue to subscribed this channel! ${error?.message || ""}`); 
-       
+       console.log(`Issue to subscribed this channel! ${error?.message || ""}`); 
+       toast.error("Subscribed Failed")
     }
 }
 

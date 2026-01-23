@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import './ChangeProfile.css'
 import { useUpdateAccountDetailsMutation } from '../../services/user/userApi'
 import Button from '../button/Button';
+import toast from 'react-hot-toast'
+
+
 
 function ChangeProfile({refetchUser}) {
 
@@ -25,10 +28,17 @@ const onchange= (e)=>{
 
 
 const handlEdit =async (e)=>{
+
+if(!form.fullName || !form.email){
+    toast.error("All field should be fulfilled")
+}
+
     try {
     e.preventDefault();
     await updateProfile(form).unwrap();
-    alert("Successfully Changed Profile Information")
+
+    toast.success("Successfully Changed Profile Information")
+
     setform({
         fullName:"",
         email:""
@@ -36,7 +46,7 @@ const handlEdit =async (e)=>{
     refetchUser();
 
 } catch (error) {
-    alert(`Error in Update Profile,${error}`)
+    toast.error("Error in Update Profile")
     console.log(`Error in Update Profile,${error}`)
 }
 }
@@ -46,12 +56,14 @@ const handlEdit =async (e)=>{
         <div className="changemain">
             <div className="text">
                 <h3>Personal Information</h3>
-                <p>Update Your Pictures and Account Information</p>
+                <p style={{width:"100%",textAlign:"center"}}>Update Your Pictures and Account Information</p>
             </div>
+
             <div className="changeform">
                 <form id='infoform' onSubmit={handlEdit}>
                 <div className="infoform">
-<label htmlFor='fullName'>FullName*</label>
+
+                <label htmlFor='fullName'>FullName*</label>
                 <input 
                 type='text'
                 name='fullName'
@@ -68,6 +80,7 @@ const handlEdit =async (e)=>{
                 onChange={onchange}
                 placeholder='Enter a Valid Email'
                 />
+
                 </div>
                 
 

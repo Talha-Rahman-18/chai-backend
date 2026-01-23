@@ -126,7 +126,7 @@
 
 
 .menuhead{
-  height: max-content;
+  height: 10vh;
   width: 100%;
   border-bottom: 1px solid black;
   display: flex;
@@ -164,4 +164,14 @@
   gap: 1vw;
 }
 
+}
+@media (max-width:600px) {
+  .unauthdots{
+    height: 100%;
+    width: 100%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }

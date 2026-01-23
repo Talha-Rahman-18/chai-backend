@@ -87,30 +87,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     border: 3px dashed rgb(255, 255, 255);
     gap: 2vh;
 }
 #videoFile{
     opacity: 0;        
   width: 0.1px;      
-  height: 0.1px;    
+  height: 0.1px; 
   position: absolute; 
   z-index: -1;  
     
 }
 #labelvideo{
     display: inline-block;
-  padding: 10px 20px;
+  padding: 5px 10px;
   cursor: pointer;
   background-color: #08e6f5;
   color: black;
   border-radius: 6px;
   font-weight: bold;
-  text-align: center;
+  align-self: center;
+    
 }
 
 .inputvideo{
-    height: 70%;
+    height: 80%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -122,15 +124,18 @@
 }
 
 #thumbnail{
-    height: 15%;
+    height: 25%;
     width:93%;
     padding: 1%;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     border: 2px solid rgb(255, 255, 255);
     color: white;
 }
+.inputvideo  input[type="file"]::file-selector-button{
+   height: 100%;
+}
 #titlevideo{
-    height: 30%;
+    height: 40%;
     width: 95%;
     background-color: transparent;
     font-size: 1.3rem;
@@ -188,8 +193,10 @@
         height: 40vh;
     }
     .videofullcont{
+        height: 85vh;
         width: 95vw;
         padding-top: 1vh;
+        position: fixed;
         justify-self: center;
         display: flex;
         align-items: flex-start;

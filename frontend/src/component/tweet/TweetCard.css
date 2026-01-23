@@ -19,7 +19,7 @@ body{
     justify-self: center;
 }
 #tweet{
-height: 95%;
+height: max-content;
 width: 85%;
 border: none;
 font-family: arial;
@@ -38,7 +38,7 @@ resize: none;
 }
 
 .tweetcont{
-    height:15vh;
+    height:max-content;
     width: 96%;
     border-bottom: 2px solid black;
     padding: 1%;
@@ -62,14 +62,22 @@ resize: none;
 }
 
 .tweetcontent{
-    height:100%;
-    width: 75%;
+    height:max-content;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     text-align: left;
+   word-break: break-all;
 }
 .tweetcontent h4,p{
     margin: 0;
     padding: 0;
+}
+
+
+@media (max-width:600px) {
+    .tweetcontent{
+        font-size: .9rem;
+    }
 }

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import './ChangePassword.css'
 import { useChangeCurrentPasswordMutation } from '../../services/user/userApi'
 import Button from '../button/Button';
+import toast from 'react-hot-toast'
+
 
 function ChangePassword({refetchuser}) {
 
@@ -29,7 +31,7 @@ const handlChangepass =async (e)=>{
 e.preventDefault();
 
     if(form.newpassword !== form.confirmpassword){
-        alert("New password and confirm password doesnt match")
+        toast.error("New password and confirm password doesnt match")
         return;
     }
     try {
@@ -46,11 +48,11 @@ e.preventDefault();
         newpassword:'',
         confirmpassword:''
     })
-    alert("Successfully Changed password")
+    toast.success("Successfully Changed password")
     refetchuser();
 
 } catch (error) {
-    alert(`Error in Update password,${error}`)
+    toast.error("Error in Update password")
     console.log(`Error in Update password,${error}`)
 }
 }
@@ -60,13 +62,15 @@ e.preventDefault();
         <div className="passchangemain">
             <div className="passtext">
                 <h3>Password Change</h3>
-                <p>Update Your Password</p>
+                <p style={{width:"100%",textAlign:"center"}}>Update Your Password</p>
             </div>
             <div className="passchangeform">
                 <form id='passinfoform' onSubmit={handlChangepass}>
 
                     <div className="passinfoform">
+                        
                         <label htmlFor='oldpassword'>Old Password*</label>
+                
                 <input 
                 type='password'
                 id='oldpassword'

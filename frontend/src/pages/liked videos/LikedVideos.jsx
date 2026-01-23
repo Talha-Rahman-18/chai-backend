@@ -24,7 +24,10 @@ const videos = data?.data || [];
         <div id='likedvideo'>
 
 <div className="heading">
- <h2 style={{position:"relative",height:"max-content",width:"100%",margin:"0",padding:"0"}}>Here is Your Liked Videos:</h2>
+
+
+<h2 style={{position:"relative",height:"max-content",width:"100%",margin:"0",padding:"0"}}>Here is Your Liked Videos:</h2>
+
 </div>
    
 
@@ -32,14 +35,14 @@ const videos = data?.data || [];
 
 {isLoading && (
     <div style={{height:"100%",width:"100%",textAlign:"center"}} className="error">
-        <h1>Loading WatchHistory...</h1>
+        <h2>Loading Liked Videos...</h2>
     </div>
 )}
 
 
 {error && (
     <div style={{height:"100vh",width:"100vw",textAlign:"center"}} className="error">
-        <h1>Error Fetching Liked Videos,Please Login</h1>
+        <h2>Error Fetching Liked Videos,Please Login</h2>
     </div>
 )}
           
@@ -48,7 +51,7 @@ const videos = data?.data || [];
 
     videos.map((video,idx)=>(
  <div key={video?._id || idx} className="likedvideoss">
-<Postcard 
+<PostCard 
     _id={video?.videoDetails
 ?._id}
     tittle={video?.videoDetails
@@ -68,7 +71,7 @@ const videos = data?.data || [];
  </div>
     ))
 
-):(<h1 style={{height:"50vh",width:"80vw",textAlign:"center"}}>no videos</h1>)}
+):(<h2 style={{height:"50vh",width:"80vw",textAlign:"center"}}>No videos</h2>)}
 
 </div>
 </div>

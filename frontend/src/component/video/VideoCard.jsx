@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {useGetAllUserVideosQuery,useGetAllVideosQuery,usePublishAVideoMutation} from '../../services/video/videoApi'
 import Button from "../button/Button";
 import PostCard from "../PostCard/PostCard";
-
+import toast from 'react-hot-toast'
 
 
 
@@ -65,9 +65,11 @@ for(let key in form){
 }
 
     try {
-        const res = await publishAVideo(formdata).unwrap();
+        await publishAVideo(formdata).unwrap();
         // console.log("video",res)
-        alert("video uploaded successfully!!")
+
+        toast.success("video uploaded successfully!!")
+
         setisOpen(false);
         form.tittle=""
         form.description=""
@@ -77,7 +79,7 @@ for(let key in form){
     } catch (error) {
         console.log(`video upload failed:${error.message || error}`);
     
-        alert(`video upload failed:${error.message || error}`);
+        toast.error('video upload failed');
     }
 }
 
@@ -98,7 +100,16 @@ const handleClick =()=>{
     return(
 <>
 <div className="videocard">
-{addVideoBtn && (
+{isLoading && (
+<h2 style={{textAlign:"center"}}>Loading video...</h2>
+)}
+
+{error && (
+<h2 style={{textAlign:"center"}}>Please Login</h2>
+)}
+
+
+{!isLoading && !error && addVideoBtn && (
     <div className="advideobtn">
         <Button 
         height={"50px"}
@@ -112,6 +123,8 @@ const handleClick =()=>{
 )}
 
 <div className="allvideo">
+
+  
 {!isLoading && !error && videos.length>0? (
  videos.map((video,idx)=>(
     
@@ -137,7 +150,7 @@ isPublished && (
     </div>
     
 ))
-) :(<h1>no video</h1>)}
+) :(<h2>no video</h2>)}
 </div>
 
 {isOpen && (
@@ -159,6 +172,7 @@ isPublished && (
         <h3>Upload your video here and complete all the information below</h3>
 
       <h1>⬆️</h1>
+      <p style={{color:"red"}}>(Limit : 100mb max)</p>
 
         <label id="labelvideo" htmlFor="videoFile">
             <input

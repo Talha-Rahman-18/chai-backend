@@ -26,16 +26,6 @@ const {
   refetchOnMountOrArgChange: true,
 });
 
-console.log({
-  data,
-  userloading,
-  isFetching,
-  usererror,
-});
-
-useEffect(() => {
-  console.log("HOME MOUNTED");
-}, []);
 
 // const channel= data?.data || [];
 

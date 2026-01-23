@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { Link,useLocation,useParams } from 'react-router-dom'
 import ChangeProfile from '../../component/editprofile/ChangeProfile'
 import ChangePassword from '../../component/editprofile/ChangePassword'
+import toast from 'react-hot-toast'
 
 
 function EditProfile() {
@@ -32,12 +33,15 @@ try {
     formdata.append("avatar",file);
 
     await updateAvatar(formdata).unwrap();
-    alert("Avatar Updated Successfully")
+
+    toast.success("Avatar Updated Successfully")
+
     refetch();
     window.location.reload();
 
 } catch (error) {
-    alert(`Avatar Update Failed,${error}`)
+    console.log(`Avatar Update Failed,${error}`)
+    toast.error("Avatar update failed")
 }
 }
 
@@ -51,13 +55,14 @@ try {
     formdata.append("coverImage",file);
 
     await updateCoverImage(formdata).unwrap();
-    alert("Cover Image Updated Successfully")
+    toast.success("Cover Image Updated Successfully")
     refetch();
 
 
 
 } catch (error) {
-    alert(`Cover Image Update Failed,${error}`)
+    console.log(`Cover Image Update Failed,${error}`)
+    toast.error("Coverimage update failed")
 }
 }
 
@@ -67,15 +72,20 @@ try {
             <div className="editupperinfos">
                 {/* coverimage  */}
                 <div className="editcoverimagecont">
+
                    <label id='coverimagelabel' htmlFor="inputcoverimage">
+                        
                         <input
                         id='inputcoverimage'
                         type="file"
                         name='coverImage'
                         onChange={handleCoverImage}
                         />
+
                         {coverLoading? <i class="fa-solid fa-spinner"></i> : <i class="fa-solid fa-cloud-arrow-up"></i>}
+                      
                       </label>
+
                 </div>
 
 {/* infoandavatar */}
@@ -83,14 +93,18 @@ try {
                     <div className="editavatarchannel">
                         <div className="uploadavatars">
                              <label id='avatarlabel' htmlFor="avatarinput">
+                        
                         <input
                         id='avatarinput'
                         type="file"
                         name='avatar'
                         onChange={handleAvatar}
                         />
+
                         {avatarLoading? <i class="fa-solid fa-spinner"></i> : <i class="fa-solid fa-cloud-arrow-up"></i>}
+                      
                       </label>
+
                         </div>
                      
                     </div>
@@ -111,6 +125,7 @@ try {
                         </div>
 
                 </div>
+
             </div>
 
                 {/* buttonstochangeui */}

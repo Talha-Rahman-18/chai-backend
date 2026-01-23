@@ -3,12 +3,9 @@ import {useToggleSubscriptionMutation,useGetSubscribedChannelsQuery, useGetUserC
 import { useGetCurrentUserQuery } from '../../services/user/userApi.js';
 import Button from '../button/Button.jsx';
 import './SubscriptionCard.css'
+import toast from 'react-hot-toast'
 
 function SubscriptionCard({data}){
-
-// const {data:mys} = useGetUserChannelSubscribersQuery(data,{skip:!data});
-
-// console.log(mys);
 
 
 const {data:subscribedChannel,refetch,isLoading,isError} = useGetSubscribedChannelsQuery(data,{skip: !data});
@@ -20,15 +17,6 @@ const name=current?.data?.username;
 
 const [subscribe] = useToggleSubscriptionMutation();
 
-const handlesub=async (id)=>{
-    try {
-        await subscribe(id).unwrap();
-        refetch();
-    } catch (error) {
-        alert(error);
-    }
-
-}
 
 
 
@@ -37,7 +25,7 @@ return(
     <div className="subcont">
 
 {isLoading && (
-    <h1>Loading...</h1>
+    <h2>Loading...</h2>
 )}
 
 
@@ -51,17 +39,15 @@ return(
                     </div>
                     </Link>
                     <div className="subcontent">
-                        <h4>Talha</h4> 
+                        <h4>{subscribe?.fullName}</h4> 
                         <p>{subscribe?.subscriberCount
 }&nbsp;subscribers</p>
                         
                     </div>
-                    <Button 
-                    onClick={()=>handlesub(subscribe?._id)}
-                    text={"subscribed"} />
+                    
                 </div>
        ))
-        ) : (<h1 style={{textAlign:"center"}} >No channel subscribed </h1>)}
+        ) : (<h2 style={{textAlign:"center"}} >No channel subscribed </h2>)}
         
     </div>
     </>

@@ -93,6 +93,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1vw;
 
 }
 #button:focus {
@@ -119,13 +120,13 @@ body{
     justify-content: center;
     z-index: 50;        
 }
-#avatar{
+#avatarch{
     height: 100%;
     width:30%;
     display: flex;
     gap: 4%;
 }
-#avatar img{
+#avatarch img{
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -133,7 +134,8 @@ body{
 }
 #chnnlname{
     height: 100%;
-    width: 45%;
+    width: 100%;
+    word-break: break-all;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -207,9 +209,7 @@ body{
         box-sizing: border-box;
     }
     
-    #chnnlname{
-        width: 100%;
-    }
+    
     #avatar{
         width: 50%;
     }
@@ -228,8 +228,9 @@ body{
         align-items: center;
     }
     .sidevideos{
-        height: max-content;
+        height:50vh;
         width: 95%;
+        font-size: 1rem;
     }
     .plyform{
     
@@ -246,12 +247,11 @@ body{
  
 @media (max-width:600px) {
     .sidevideos{
-        height: 35vh;
-    }
-    #videoplay{
         height: 40vh;
-        width: 98%;
-        box-sizing: border-box;
+    }
+  #videoinfos{
+       font-size: .9rem;
+       
     }
     .plyform{
     width: 50vw;

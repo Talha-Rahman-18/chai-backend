@@ -34,15 +34,21 @@ useEffect(() => {
 const handleLogout = async()=>{
     try {
         await logout().unwrap();
+
         localStorage.removeItem('token');
-        alert("Logout successfull");
+
+        toast.success("Logout successfull");
+
         window.location.reload();
         navigate("/")
         
     } catch (error) {
-        alert(`logout error ${error}`)
+        toast.error("logout error")
+
         localStorage.removeItem('token');
-    } finally {
+
+    } 
+    finally {
     localStorage.removeItem("token");
     navigate("/", { replace: true });
   }
@@ -62,9 +68,10 @@ const handleLogout = async()=>{
 
 {!auth? (
     <div className="elementheader">
-        <Button height={"40px"} width={"120px"} text={"Login"} color={"white"} backgroundColor={"red"} onClick={()=>navigate("/login")} />
+        <Button id='headbutton' height={"40px"} width={"120px"} text={"Login"} color={"white"} backgroundColor={"red"} onClick={()=>navigate("/login")} />
 
-        <Button height={"40px"} width={"120px"} text={"Register"} color={"white"} backgroundColor={"red"} onClick={()=>navigate("/register")} />
+        <Button id='headbutton' height={"40px"} width={"120px"} text={"Register"} color={"white"} backgroundColor={"red"} onClick={()=>navigate("/register")} />
+                <p className='unauthdots'><i class="fa-solid fa-bars" onClick={()=>setopen(true)}></i></p>
     </div>
 ):(<div className="elementheader">
             <Button id='headbutton' fontSize={"1.2rem"} height={"45px"} width={"45px"} text={<i class="fa-solid fa-arrow-rotate-right"></i>} backgroundColor={"red"} color={"white"}  />
@@ -109,10 +116,20 @@ const handleLogout = async()=>{
 </div>
 
 
-<div className="lgout">
-    <Button  height={"70px"} width={"70px"} borderRadius={"50%"} text={<i class="fa-solid fa-power-off"></i>} color={"white"} backgroundColor={"red"} onClick={handleLogout} />
+    {auth?  (
+ <div className="lgout">
+        <Button  height={"70px"} width={"70px"} borderRadius={"50%"} text={<i class="fa-solid fa-power-off"></i>} color={"white"} backgroundColor={"red"} onClick={handleLogout} />
     <h2>Logout</h2>
-</div>
+    </div>
+    ) : (
+       <div className="lgout">
+        <Button  height={"40px"} width={"120px"} text={"Login"} color={"white"} backgroundColor={"red"} onClick={()=>navigate("/login")} />
+
+        <Button  height={"40px"} width={"120px"} text={"Register"} color={"white"} backgroundColor={"red"} onClick={()=>navigate("/register")} />
+    </div>
+    )}
+    
+
             </div>
         </div>
     )}    

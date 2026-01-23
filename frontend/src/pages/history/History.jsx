@@ -30,14 +30,14 @@ watchHistory || [];
 
 {isLoading && (
     <div style={{height:"100%",width:"100%",textAlign:"center"}} className="error">
-        <h1>Loading WatchHistory...</h1>
+        <h2>Loading WatchHistory...</h2>
     </div>
 )}
 
 
 {error && (
     <div style={{height:"100vh",width:"100vw",textAlign:"center"}} className="error">
-        <h1>Error Fetching WatchHistory, Please Login</h1>
+        <h2>Error Fetching WatchHistory, Please Login</h2>
     </div>
 )}
           
@@ -59,7 +59,7 @@ watchHistory || [];
  </div>
     ))
 
-):(<h1 style={{height:"100%",width:"100%",textAlign:"center"}}>no videos</h1>)}
+):(<h2 style={{height:"100%",width:"100%",textAlign:"center"}}>no videos</h2>)}
 
 </div>
 </div>

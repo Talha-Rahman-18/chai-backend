@@ -10,10 +10,11 @@
 }
 
 .subscribecont{
-    height:8vh;
+    height:max-content;
     width: 95%;
     border-bottom: 1px solid black;
     padding: 5px;
+    padding-bottom: 1vh;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -33,8 +34,9 @@
 }
 
 .subcontent{
-    height:100%;
+    height:max-content;
     width: 75%;
+    word-break: break-all;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

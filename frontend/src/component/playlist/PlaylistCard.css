@@ -40,6 +40,8 @@
 .playlistname{
     height: 100%;
     width: 30%;
+     word-break: break-all;
+    overflow: auto;
     margin-left: 5px;
     text-align: left;
     color: white;

@@ -4,7 +4,7 @@ import Scrolltop from './component/Scrolltop'
 import './App.css'
 import Header from './component/header/Header'
 import Sidebar from './component/sidebar/Sidebar'
-
+import { Toaster } from 'react-hot-toast'
 
 function App() {
 
@@ -24,6 +24,8 @@ return (
 <Outlet />
 </main>
 
+
+  <Toaster backgroundColor="red" position="top-right" reverseOrder={false} />
 </div>
   )
 }

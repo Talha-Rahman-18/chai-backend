@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import {useForm} from 'react-hook-form'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import TweetCard from '../tweet/TweetCard';
 import { useGetCurrentUserQuery, useLoginUserMutation } from '../../services/user/userApi';
 import './Login.css'
 import Logo from '../logo/Logo';
+import toast from 'react-hot-toast';
 
 function Login (){
     const { register, handleSubmit,formState:{errors} } = useForm();
-    const [loginUser] = useLoginUserMutation();
+    const [loginUser,{isLoading:logloading}] = useLoginUserMutation();
     const navigate = useNavigate();
     
     const login= async(data)=>{
@@ -19,10 +20,15 @@ try {
     const res= await loginUser(data).unwrap();
     if(res?.data?.accessToken && res?.data?.refreshToken){
         localStorage.setItem('token',res.data.accessToken);
+
+        toast.success("Login Successfull")
     }
-navigate("/");    
+    
+    navigate("/");    
+    window.location.reload();
+
 } catch (error) {
-    alert(error.data)
+    toast.error("Login failed")
 }
 
 }
@@ -45,8 +51,10 @@ return(
 {/* name */}
 <div className="inputform">
             <form onSubmit={handleSubmit(login)} className='forminput'>
-            <Input
-            label={"Username"}
+
+                <label htmlFor="username">Username</label>
+            <input
+            id='username'
             type={"text"}
             placeholder={"Enter valid Username"}
             {...register("username",{
@@ -57,24 +65,12 @@ return(
             {errors.username && (
                 <p style={{color:"red"}}>{errors.username.message}</p>
             )}
-{/* email */}
-            {/* <Input
-            
-            label={"Email"}
-            type={"email"}
-            placeholder={"Enter valid Email"}
-            {...register("email",{
-                required:"email needed"
-                 
-            })}
-            />
-            {errors.email && (
-                <p style={{color:"red"}}>{errors.email.message}</p>
-            )} */}
-{/* password */}
-            <Input
            
-            label={"Password"}
+{/* password */}
+
+            <label htmlFor='password'>Password</label>
+            <input
+            id='password'
             type={"password"}
             placeholder={"Enter password"}
             {...register("password",{
@@ -86,12 +82,11 @@ return(
             )}
 
 {/* button  */}
-<Button type='submit' color={"white"} backgroundColor={"red"} width={"85%"} text={"Login"} alignSelf={"center"}/>
-
-{/* <Button color={"white"} backgroundColor={"red"} width={"85%"} text={"Login as Demo"} alignSelf={"center"}/> */}
+<Button type='submit' color={logloading?"gray": "white"} backgroundColor={"red"} width={"100%"} text={logloading? "Signing In...": "Sign In"} alignSelf={"center"}  />
 
 
-<p>Dont have an account?&nbsp;SignUp</p>
+
+<p>Dont have an account?&nbsp;<Link to={'/register'}>Sign Up</Link></p>
 </form>
 </div>
 

@@ -28,7 +28,8 @@ try {
     window.location.reload();
 
 } catch (error) {
-    toast.error("Login failed")
+    toast.error(error.data)
+    console.log(error.data);
 }
 
 }
@@ -58,13 +59,11 @@ return(
             type={"text"}
             placeholder={"Enter valid Username"}
             {...register("username",{
-                required:"username required"
+                // required:"username required"
                  
             })}
             />
-            {errors.username && (
-                <p style={{color:"red"}}>{errors.username.message}</p>
-            )}
+            
            
 {/* password */}
 
@@ -74,7 +73,7 @@ return(
             type={"password"}
             placeholder={"Enter password"}
             {...register("password",{
-                required:true,
+                required:"password is required",
             })}
             />
             {errors.password && (

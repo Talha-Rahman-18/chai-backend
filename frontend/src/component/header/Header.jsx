@@ -54,6 +54,7 @@ const handleLogout = async()=>{
   }
 }
 
+const ismassenger = /FBAN|FBAV|Messenger/i.test(navigator.userAgent)
 
     return (
        <div className="headercont">
@@ -77,7 +78,7 @@ const handleLogout = async()=>{
             <Button id='headbutton' fontSize={"1.2rem"} height={"45px"} width={"45px"} text={<i class="fa-solid fa-arrow-rotate-right"></i>} backgroundColor={"red"} color={"white"}  />
             <div className="channellink">
                 <Link to={`/mychannel/${user?.username}`}>
-                <img src={user?.avatar} alt={user?.username} />
+                <img src={user?.avatar} alt={user?.username} loading={ismassenger ? "eager" : "lazy"} />
                 </Link>
             </div>
             <Button id='headbutton'  height={"40px"} width={"120px"} text={<i class="fa-solid fa-power-off"></i>} color={"white"} backgroundColor={"red"} onClick={handleLogout} />

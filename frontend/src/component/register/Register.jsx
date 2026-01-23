@@ -11,7 +11,7 @@ function Register(){
 
     const navigate = useNavigate();
     const [registerUser,{isLoading:regloading}] = useRegisterUserMutation();
-    const {register,handleSubmit} = useForm();
+    const {register,handleSubmit,formState:{errors}} = useForm();
 
     const reg = async (data)=>{
 
@@ -30,7 +30,7 @@ function Register(){
          toast.success("Registraition Done")
          
        } catch (error) {
-        toast.error('Registration failed')
+        toast.error(error.data)
         console.log(error)
        }
 
@@ -51,41 +51,67 @@ function Register(){
                 <label htmlFor="fullname">Full Name</label>
              <input type={"text"}  placeholder="fullName"
             {...register("fullName",{
-                required:"fullName is requered"
+                // required:"fullName is requered"
             })}
             />
+
+            {errors.fullName && (
+                <p style={{color:"red"}} >*{errors.fullName.message}</p>
+            )}
 
             <label htmlFor="username">Username</label>
             <input type={"text"}  placeholder="username"
             {...register("username",{
-                required:"Username is requered"
+                // required:"Username is requered"
             })}
             />
+
+             {errors.username && (
+                <p style={{color:"red"}} >*{errors.username.message}</p>
+            )}
 
             <label htmlFor="email">Email</label>
              <input type={"email"}  placeholder="email"
             {...register("email",{
-                required:"email is requered"
+                // required:"email is requered"
             })}
             />
+
+             {errors.email && (
+                <p style={{color:"red"}} >*{errors.email.message}</p>
+            )}
+
             <label htmlFor="avatar">Avatar</label>
              <input type={"file"}  placeholder="avatar"
             {...register("avatar",{
                 required:"avatar is requered"
             })}
             />
-            <label htmlFor="avatar">Cover Image</label>
+
+             {errors.avatar && (
+                <p style={{color:"red"}} >*{errors.avatar.message}</p>
+            )}
+
+            <label htmlFor="coverImage">Cover Image</label>
             <input type={"file"}  placeholder="coverImage"
             {...register("coverImage",{
                 required:"coverImage is requered"
             })}
             />
+
+            {errors.coverImage && (
+                <p style={{color:"red"}} >*{errors.coverImage.message}</p>
+            )}
+
             <label htmlFor="password">Password</label>
             <input type={"password"}  placeholder="password"
             {...register("password",{
-                required:"Password is requered"
+                // required:"Password is requered"
             })}
             />
+
+             
+
 
             <Button type="submit"  text={regloading?"Signing Up...":"Sign Up"} backgroundColor={"red"} color={regloading ? "gray" : "white"} width={"100%"} />
             <p>Already have an account&nbsp;<Link to={'/login'}>Sign In</Link></p>

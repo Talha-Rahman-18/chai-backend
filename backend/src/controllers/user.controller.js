@@ -14,8 +14,6 @@ try {
   const accessToken=user.generateAccessToken();
   const refreshToken=user.generateRefreshToken();
 
-  console.log("access::",accessToken)
-    console.log("reff",refreshToken)
 
 
 user.refreshToken=refreshToken;
@@ -36,15 +34,25 @@ const registerUser = asyncHandler( async (req,res)=>{
   
   //validate the date
   if([fullName,email,username,password].some((field)=> field?.trim() === "")){
-    throw new ApiError(400,"All fields are required");
+   res.status(401).json("All fields are required");
     
   };
   
+if(password?.trim().length < 6){
+  res.status(400).json("Password must be atleast 6 characters");
+}
+
   //check if have a prev account at the data
   const existedUser= await User.findOne({
     $or:[{ email },{ username }]
   });
-  if(existedUser){throw new ApiError(409,"User with this eamil or username already exist")}
+
+  if(existedUser){
+
+    res.status(401).json("User with this eamil or username already exist");
+throw new ApiError(401,"User with this eamil or username already exist")
+
+  }
   
   //check avatar and bcg image
   const avatarLocalPath=  req.files?.avatar[0]?.path;
@@ -55,7 +63,7 @@ const registerUser = asyncHandler( async (req,res)=>{
   }
 
   if(!avatarLocalPath){
-    throw new ApiError(400,"Avatar is required");
+    res.status(401).json("Avatar is required");
   }
   
 
@@ -64,6 +72,7 @@ const registerUser = asyncHandler( async (req,res)=>{
   const coverImage=await uploadOnCloudinary(coverImageLocalPath);
 
   if(!avatar){
+    res.status(402).json("Avatar is not uploaded");
     throw new ApiError(402,"Avatar is not uploaded");
   }
 
@@ -87,12 +96,15 @@ const registerUser = asyncHandler( async (req,res)=>{
     
 //check user created?
 if(!createdUser){
+  res.status(502).json("something went wrong try again");
   throw new ApiError(502,"something went wrong while registering user");
+
 }
 
 //return res
 return res.status(201).json(
   new ApiResponse(200,createdUser,"User Account Created Successfully")
+
 )
 
 })
@@ -108,6 +120,7 @@ const loginUser=asyncHandler( async (req,res)=>{
   
   //check if username or email
   if(!username && !email){
+    res.status(400).json("Username is required");
     throw new ApiError(400,"username or email is required")
   }
   
@@ -117,6 +130,7 @@ const loginUser=asyncHandler( async (req,res)=>{
 })
 
 if(!user){
+  res.status(404).json("User with this eamil or username does not exist");
   throw new ApiError(404,"user does not exist with this username or email")
   
 }
@@ -126,6 +140,7 @@ const isPasswordValid =await user.isPasswordCorrect(password);
 
 
 if(!isPasswordValid){
+  res.status(401).json("Password is incorrect");
   throw new ApiError(401,"password incorrect");
   
 }
@@ -263,6 +278,7 @@ const user = await User.findById(req.user?._id)
 const  isPasswordCorrect = await user.isPasswordCorrect(oldpassword);
 
 if(!isPasswordCorrect){
+  res.status(400).json("Invalid password");
 throw new ApiError(400,"Invalid password")
 }
 
@@ -296,6 +312,7 @@ const {fullName,email}=req.body
 
 if(!fullName && !email){
   throw new ApiError(400,"All fields are required");
+  res.status(400).json("All fields are required");
 }
 
 const user=await User.findByIdAndUpdate(req.user?._id,
@@ -386,10 +403,11 @@ if(!coverImage.url){
 
 const getUserChannelProfile=asyncHandler(async(req,res)=>{
 const {username}= req.params
-console.log("usernsme",username)
+
 
 if(!username?.trim()){
 throw new ApiError(400,"username is missing");
+
 }
 
 //aggregation pipeline returns array

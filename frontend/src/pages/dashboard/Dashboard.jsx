@@ -141,6 +141,7 @@ try {
     <div className="videoeditform" onClick={(e)=>e.stopPropagation()}>
         <form className='formcont' onSubmit={(e)=>{handleEdit(e,editvideo)}}>
 
+<fieldset disabled ={updateloading}>
 {/* formcontent */}
 
 <div className="headbtns">
@@ -175,6 +176,7 @@ onChange={handleChange}
 <Button type='submit' color={updateloading ? "gray" :" black"} text={updateloading? "saving..." : "save"} />
 
 </div>
+</fieldset>
 
         </form>
     </div>

@@ -32,7 +32,7 @@ const {
     return (
 
      <div id='home'>
-        {userloading && (
+        {isLoading && (
           <Loading />
         )}
 

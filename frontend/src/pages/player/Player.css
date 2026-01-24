@@ -101,6 +101,8 @@ body{
   border: none;
   box-shadow: none;
 }
+
+/* addplaylistbutton */
 .addply{
     height: max-content;
     width: 100px;
@@ -108,22 +110,27 @@ body{
     flex-direction: column;
     align-items: center;
 }
+
+/* adplaylistform */
 .plyform{
     height: max-content;
     width: 220px;
     position: absolute;
-    top: 600px;    
-    left: 50%;
+    top: 650px;    
+    left: 22vw;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 50;        
+    z-index: 50;  
 }
+
+/* avatar */
 #avatarch{
     height: 100%;
-    width:30%;
+    width:10%;
     display: flex;
+    justify-content: end;
     gap: 4%;
 }
 #avatarch img{
@@ -234,14 +241,10 @@ body{
     }
     .plyform{
     
-    position: absolute;
-    top: 500px;    
-    left: 65%;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 50;        
+   position: absolute;
+    top: 600px;    
+    left: 30vw;
+   z-index: 1000;      
 }
 }
  
@@ -253,10 +256,15 @@ body{
        font-size: .9rem;
        
     }
+    #avatarch{
+        width: 25%;
+        justify-content: center;
+    }
     .plyform{
     width: 50vw;
+    font-size: .8rem;
     position: absolute;
-    top: 580px;    
+    top: 620px;    
     left: 30%;
     border-radius: 12px;
     display: flex;

@@ -6,12 +6,14 @@ import Logo from "../logo/Logo";
 import Input from "../input/Input";
 import Button from "../button/Button";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Register(){
 
     const navigate = useNavigate();
     const [registerUser,{isLoading:regloading}] = useRegisterUserMutation();
     const {register,handleSubmit,formState:{errors}} = useForm();
+    const [show,setshow] = useState(false)
 
     const reg = async (data)=>{
 
@@ -104,11 +106,24 @@ function Register(){
             )}
 
             <label htmlFor="password">Password</label>
-            <input type={"password"}  placeholder="password"
+            <input type={show? "text" : "password"}  placeholder="password"
             {...register("password",{
                 // required:"Password is requered"
             })}
             />
+
+            <div style={{display:"flex",alignItems:"center",alignSelf:"flex-start",justifyContent:"center",width:"max-content",gap:"1vw"}}>
+
+           <label class="checkbox">
+  <input type="checkbox"
+  onChange={()=>setshow(!show)}
+  />
+
+  <span class="custom"></span>
+
+  show password
+</label>
+            </div>
 
              
 

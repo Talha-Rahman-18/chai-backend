@@ -152,6 +152,8 @@ return (
         handleEdit();
     }}>
 
+<fieldset disabled={updateloading} >
+
     <div className="editform" onClick={()=>setisOpen(false)}>
     <div className="editmain" onClick={(e)=>e.stopPropagation()}>
         <div className="headedit">
@@ -198,6 +200,8 @@ return (
        </div>
     </div>
 </div>
+</fieldset>
+
 </form>
 
 

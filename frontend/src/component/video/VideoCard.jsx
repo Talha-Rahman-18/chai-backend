@@ -154,7 +154,9 @@ isPublished && (
 </div>
 
 {isOpen && (
-    <form className="formvideo"  onSubmit={handleSubmit}>
+    <form  className="formvideo"  onSubmit={handleSubmit}>
+
+<fieldset disabled={publishLoading}>
 
     <div ref={boxref} className="videofullcont" onClick={(e)=>setisOpen(false)}>
 
@@ -213,11 +215,13 @@ isPublished && (
     </div>
 
  <div className="sbmtbtns">
-    <Button color={publishLoading? "white":"black"} backgroundColor={publishLoading? "transparent" : "white"} text={publishLoading? "Saving..." : "save"} type="submit"  />
+    <Button color={publishLoading? "white":"black"} backgroundColor={publishLoading? "rgb(101, 101, 101)" : "white"} text={publishLoading? "Saving..." : "save"} type="submit"  />
     </div>
 </div>
 
 </div>
+
+</fieldset>
 </form>
 )}
 

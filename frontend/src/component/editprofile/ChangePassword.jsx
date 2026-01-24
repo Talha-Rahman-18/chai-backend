@@ -13,7 +13,7 @@ const [form,setform] = useState({
     confirmpassword:''
 })
 
-const [changeCurrentPassword]  = useChangeCurrentPasswordMutation();
+const [changeCurrentPassword,{isLoading:updateloading}]  = useChangeCurrentPasswordMutation();
 
 const handlechange = (e)=>{
     const {name,value} = e.target;
@@ -72,7 +72,9 @@ e.preventDefault();
             <div className="passchangeform">
                 <form id='passinfoform' onSubmit={handlChangepass}>
 
-                    <div className="passinfoform">
+<fieldset id='passinfoform' disabled={updateloading}>
+
+<div className="passinfoform">
                         
                         <label htmlFor='oldpassword'>Old Password*</label>
                 
@@ -103,12 +105,15 @@ e.preventDefault();
                 placeholder='Enter Password Again'
                 />
 
-                    </div>
+</div>
 
                 
 <div className="passbuttonsave">
     <Button type='submit' text={"save"} color={"white"} backgroundColor={"red"} width={"80px"} height={"90%"}  />
 </div>
+
+</fieldset>
+
                 </form>
             </div>
         </div>

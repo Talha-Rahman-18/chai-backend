@@ -13,7 +13,7 @@ const [form,setform] = useState({
     email:""
 })
 
-const [updateProfile]  = useUpdateAccountDetailsMutation();
+const [updateProfile,{isLoading:updateloading}]  = useUpdateAccountDetailsMutation();
 
 const onchange= (e)=>{
     const {name,value} = e.target;
@@ -61,6 +61,9 @@ const handlEdit =async (e)=>{
 
             <div className="changeform">
                 <form id='infoform' onSubmit={handlEdit}>
+
+<fieldset id='infoform' disabled={updateloading}>
+
                 <div className="infoform">
 
                 <label htmlFor='fullName'>FullName*</label>
@@ -87,6 +90,9 @@ const handlEdit =async (e)=>{
 <div className="buttonsave">
     <Button type='submit' text={"save"} color={"white"} backgroundColor={"red"} width={"100px"} />
 </div>
+
+</fieldset>
+
                 </form>
             </div>
         </div>

@@ -9,7 +9,8 @@ import TweetCard from '../../component/tweet/TweetCard'
 import { useGetCurrentUserQuery, useGetUserChannelProfileQuery } from '../../services/user/userApi'
 import { useState } from 'react'
 import { Link,useLocation,useParams } from 'react-router-dom'
-
+import { useToggleSubscriptionMutation } from '../../services/subscription/subscriptionApi'
+import toast from 'react-hot-toast'
 
 function Channelmy() {
 
@@ -22,9 +23,23 @@ const location = useLocation();
 
 const [switchState,setSwitchState] = useState('videos');
 
-const {data,error} = useGetUserChannelProfileQuery(username);
+const {data,error,refetch} = useGetUserChannelProfileQuery(username);
 const channel = data?.data;
 
+
+const [togglesubscribe] = useToggleSubscriptionMutation();
+
+const handleSubscribe = async ()=>{
+    
+    try {
+        await togglesubscribe(channel?._id).unwrap();
+        refetch();
+        
+    } catch (error) {
+       console.log(`Issue to subscribed this channel! ${error?.message || ""}`); 
+       toast.error("Subscribed Failed")
+    }
+}
 
 
 useEffect(()=>{
@@ -54,11 +69,22 @@ if(location.state?.switchState !== undefined){
                             <p>{channel?.subscribersCount
 } subscriber&nbsp;·&nbsp;{channel?.channelsSubscribedToCount}&nbsp;subscribed</p>
 
+
+                            {username === name ?  (
                         <div className="editchannel">
+
                             <Link to={`/mychannel/${channel?.username}/edit`}>
                             <Button width={"200px"} text={"Edit"} backgroundColor={"red"} />
                             </Link>
                         </div>
+                            ) : (
+                                 <Button width={"200px"} 
+                            border={"1px solid black"}
+                            color={channel?.
+                             isSubscribed? "black" : "white"}backgroundColor={channel?.isSubscribed? "whitesmoke" : "red"} text={channel?.isSubscribed? "Subscribed" : "Subscribe"} 
+                            onClick={handleSubscribe}
+                            />
+                            )}
                         </div>
 
 

@@ -4,6 +4,7 @@ import { useGetCurrentUserQuery } from '../../services/user/userApi.js';
 import Button from '../button/Button.jsx';
 import './SubscriptionCard.css'
 import toast from 'react-hot-toast'
+import Loading from '../loading/Loading.jsx'
 
 function SubscriptionCard({data}){
 
@@ -25,11 +26,11 @@ return(
     <div className="subcont">
 
 {isLoading && (
-    <h2>Loading...</h2>
+    <h2><Loading /></h2>
 )}
 
 
-        {!isError && !isLoading && subscribed && subscribed.length > 0? (
+{!isError && !isLoading && subscribed && subscribed.length > 0? (
             subscribed.map((subscribe,idx)=>(
 
         <div key={subscribe?._id || idx } className="subscribecont">
@@ -47,7 +48,7 @@ return(
                     
                 </div>
        ))
-        ) : (<h2 style={{textAlign:"center"}} >No channel subscribed </h2>)}
+) : (<h2 style={{textAlign:"center"}} >No channel subscribed </h2>)}
         
     </div>
     </>

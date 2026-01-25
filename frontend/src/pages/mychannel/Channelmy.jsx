@@ -15,6 +15,9 @@ function Channelmy() {
 
 const {username} = useParams();
 
+const {data:userdata} = useGetCurrentUserQuery();
+const name = userdata?.data?.username;
+
 const location = useLocation();
 
 const [switchState,setSwitchState] = useState('videos');
@@ -95,7 +98,7 @@ if(location.state?.switchState !== undefined){
             <div className="compschannel">
                 {
                     switchState === 'videos' &&
-                    <VideoCard data={channel?._id} addVideoBtn={true} />
+                    <VideoCard data={channel?._id} addVideoBtn={username === name ? true : false} />
                 }
                 {
                     switchState === 'Playlists' &&
@@ -103,7 +106,7 @@ if(location.state?.switchState !== undefined){
                 }
                 {
                     switchState === 'tweets' &&
-                    <TweetCard data={channel?._id} addTweet={true} />
+                    <TweetCard data={channel?._id} addTweet={username === name ? true : false} />
                 }
                 {
                     switchState === 'subscribed' &&

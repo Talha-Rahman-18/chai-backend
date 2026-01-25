@@ -150,7 +150,7 @@ isPublished && (
     </div>
     
 ))
-) :(<h2>no video</h2>)}
+) :(<h2 style={{textAlign:"center",width:"100%",position:"absolute"}}>no video</h2>)}
 </div>
 
 {isOpen && (

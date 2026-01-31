@@ -8,6 +8,8 @@ import { useGetCurrentUserQuery, useLoginUserMutation } from '../../services/use
 import './Login.css'
 import Logo from '../logo/Logo';
 import toast from 'react-hot-toast';
+import Google from '../Google';
+
 
 function Login (){
     const { register, handleSubmit,formState:{errors} } = useForm();
@@ -26,7 +28,7 @@ try {
     }
     
     navigate("/");    
-    window.location.reload();
+    // window.location.reload();
 
 } catch (error) {
     toast.error(error.data)
@@ -84,7 +86,8 @@ return(
 
 <div style={{display:"flex",alignItems:"center",alignSelf:"flex-start",justifyContent:"center",width:"max-content",gap:"1vw"}}>
 
-           <label class="checkbox">
+<label class="checkbox">
+
   <input type="checkbox"
   onChange={()=>setshow(!show)}
   />
@@ -93,8 +96,13 @@ return(
 
   show password
 </label>
-            </div>
 
+
+</div>
+
+{/* googlelogin  */}
+
+<Google />
 {/* button  */}
 <Button type='submit' color={logloading?"gray": "white"} backgroundColor={"red"} width={"100%"} text={logloading? "Signing In...": "Sign In"} alignSelf={"center"}  />
 

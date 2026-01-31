@@ -1,4 +1,4 @@
-import { registerUser,loginUser, logoutUser, refreshAccessToken, changeCurrentPassword, getCurrentUser, updateAccountDetails, updateUserAvatar, updateUserCoverImage, getUserChannelProfile, getWatchHistory } from "../controllers/user.controller.js";
+import { registerUser,loginUser, logoutUser, refreshAccessToken, changeCurrentPassword, getCurrentUser, updateAccountDetails, updateUserAvatar, updateUserCoverImage, getUserChannelProfile, getWatchHistory,googleLogin } from "../controllers/user.controller.js";
 import {upload} from '../middlewares/multer.middleware.js'
 import { Router } from "express";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -22,6 +22,7 @@ router.route("/register").post(
     registerUser);
 
 router.route("/login").post(loginUser);
+router.route("/google-login").post(googleLogin)
 
 //secured routes
 router.route("/logout").post(verifyJWT,logoutUser)

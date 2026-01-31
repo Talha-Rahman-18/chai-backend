@@ -16,6 +16,7 @@ const {data:videos,isLoading,error} = useGetAllVideosSearchQuery({
 });
 
 const video = videos?.data?.docs || [] ;
+console.log(video)
 
 const {
   data,

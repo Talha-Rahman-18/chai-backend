@@ -57,6 +57,9 @@
 .dots{
   display: none;
 }
+.unauthdots{
+  display: none;
+}
 .menubar{
   display: none;
 }

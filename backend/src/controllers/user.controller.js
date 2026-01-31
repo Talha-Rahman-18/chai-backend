@@ -5,6 +5,11 @@ import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
 import jwt from 'jsonwebtoken'
 import mongoose from "mongoose";
+import {OAuth2Client} from 'google-auth-library'
+import 'dotenv/config'
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
+
 
 
 //gen tokens
@@ -116,7 +121,6 @@ const loginUser=asyncHandler( async (req,res)=>{
   //get data
   const {email,username,password}=req.body
 
-  console.log(email)
   
   //check if username or email
   if(!username && !email){
@@ -179,6 +183,58 @@ return res.status(200)
 
 })
 
+const googleLogin =asyncHandler( async (req, res) => {
+  const { tokenId } = req.body;
+  const ticket = await client.verifyIdToken({
+    idToken: tokenId,
+    audience: process.env.GOOGLE_CLIENT_ID,
+  });
+
+  const { email, name,given_name,picture } = ticket.getPayload();
+
+  // check if user exists in DB, create if not
+  let user = await User.findOne({
+    $or:[{email},{name}]
+})
+  
+
+
+if(!user){
+    const newUser =  await User.create({
+        fullName:name,
+        avatar:picture,
+        email:email,
+        username:given_name,
+    })
+    user = newUser;
+};
+  // generate JWT
+
+const {accessToken,refreshToken} = await generateAccessAndRefreshTokens(user._id);
+
+const loggedInUser = await User.findById(user?._id).select("-password -refreshToken");
+
+
+const options ={
+  httpOnly:true,
+  secure:true,
+  sameSite: "none",
+  maxAge: 7 * 24 * 60 * 60 * 1000
+}
+
+return res
+.status(200)
+.cookie("accessToken",accessToken,{
+    ...options,
+    maxAge: 24 * 60 * 60 * 1000
+})
+.cookie("refreshToken",refreshToken,options)
+.json(
+    new ApiResponse(200,{user:loggedInUser,accessToken,refreshToken},"Google logged in successfully")
+);
+
+});
+
 //logout//
 const logoutUser=asyncHandler(async(req,res)=>{
    await User.findByIdAndUpdate(
@@ -224,7 +280,7 @@ try {
   }
   
   if(incomingRefreshToken !== user?.refreshToken){
-      throw new ApiError(401,"Refresh Token is Expired or Used");
+      throw new ApiError(401,"Refresh Token is Expired or Used");//because i get a token and by decoded that i get the user now i find that this user dosent have the token ,it means someone else stolen the token !!
   
   }
   
@@ -537,4 +593,4 @@ return res
 
 
 
-export {registerUser,loginUser,logoutUser,refreshAccessToken,getCurrentUser,updateAccountDetails,changeCurrentPassword,updateUserAvatar,updateUserCoverImage,getUserChannelProfile,getWatchHistory}
+export {registerUser,loginUser,logoutUser,refreshAccessToken,getCurrentUser,updateAccountDetails,changeCurrentPassword,updateUserAvatar,updateUserCoverImage,getUserChannelProfile,getWatchHistory,googleLogin}

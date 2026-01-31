@@ -22,6 +22,14 @@ loginUser:builder.mutation({
     })
 }),
 
+googleLogin:builder.mutation({
+    query:(body)=>({
+        url:'/users/google-login',
+        method:'POST',
+        body,
+    })
+}),
+
 refreshAccessToken:builder.mutation({
     query:(body)=>({
         url:'/users/refresh-token',
@@ -89,4 +97,4 @@ getWatchHistory:builder.query({
 
 
 
-export const{useRegisterUserMutation,useLoginUserMutation,useRefreshAccessTokenMutation,useLogoutUserMutation,useChangeCurrentPasswordMutation,useGetCurrentUserQuery,useUpdateAccountDetailsMutation,useUpdateUserAvatarMutation,useUpdateUserCoverImageMutation,useGetUserChannelProfileQuery,useGetWatchHistoryQuery}=userApi;
+export const{useRegisterUserMutation,useLoginUserMutation,useGoogleLoginMutation,useRefreshAccessTokenMutation,useLogoutUserMutation,useChangeCurrentPasswordMutation,useGetCurrentUserQuery,useUpdateAccountDetailsMutation,useUpdateUserAvatarMutation,useUpdateUserCoverImageMutation,useGetUserChannelProfileQuery,useGetWatchHistoryQuery}=userApi;

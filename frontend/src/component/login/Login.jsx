@@ -28,7 +28,7 @@ try {
     }
     
     navigate("/");    
-    // window.location.reload();
+    window.location.reload();
 
 } catch (error) {
     toast.error(error.data)

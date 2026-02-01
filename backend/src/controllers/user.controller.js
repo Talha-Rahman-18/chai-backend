@@ -205,6 +205,7 @@ if(!user){
         avatar:picture,
         email:email,
         username:given_name,
+        authprovider:"google"
     })
     user = newUser;
 };
@@ -212,7 +213,7 @@ if(!user){
 
 const {accessToken,refreshToken} = await generateAccessAndRefreshTokens(user._id);
 
-const loggedInUser = await User.findById(user?._id).select("-password -refreshToken");
+const loggedInUser = await User.findById(user?._id).select("-refreshToken");
 
 
 const options ={

@@ -13,7 +13,7 @@ const [loginGoogle] = useGoogleLoginMutation();
 const navigate = useNavigate();
 
   const handleLoginSuccess = async(credentialResponse) => {
-    const tokenId = credentialResponse.credential; // <-- THIS IS THE TOKEN ID
+    const tokenId = credentialResponse?.credential; // <-- THIS IS THE TOKEN ID
 
 if(!tokenId){
   toast.error("token not generated")
@@ -35,7 +35,7 @@ navigate("/")
 
 
 } catch (error) {
-  toast.error(error || "Google login failed")
+toast.error(error?.data?.message || "Google login failed");
   console.log(error)
 }
     

@@ -41,11 +41,16 @@ const userSchema=new Schema(
         ],
         password:{
             type:String,
-            required:[true,"Password is required"]
+            required:function (){
+                return this.authprovider === "local";
+            }
         },
+        authprovider:{type:String,enum:["local","google"],required:true,default:"local"},
+       
         refreshToken:{
             type:String
         }
+
         
 },
 
